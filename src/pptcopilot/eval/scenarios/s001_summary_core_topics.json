@@ -1,0 +1,19 @@
+{
+  "scenario_id": "s001_summary_core_topics",
+  "name": "Summary covers core deck topics",
+  "task_type": "summary",
+  "suites": ["smoke"],
+  "input": {
+    "path": "data/processed/sample.jsonl"
+  },
+  "rubric": {
+    "min_keypoint_coverage": 0.6
+  },
+  "expected": {
+    "required_key_points": [
+      "SlideCopilot Overview",
+      "Data Pipeline",
+      "Evaluation Harness"
+    ]
+  }
+}

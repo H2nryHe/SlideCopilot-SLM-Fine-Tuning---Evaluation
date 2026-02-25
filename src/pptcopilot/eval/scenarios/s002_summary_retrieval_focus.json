@@ -1,0 +1,18 @@
+{
+  "scenario_id": "s002_summary_retrieval_focus",
+  "name": "Summary mentions retrieval and baseline",
+  "task_type": "summary",
+  "suites": ["smoke"],
+  "input": {
+    "path": "data/processed/sample.jsonl"
+  },
+  "rubric": {
+    "min_keypoint_coverage": 0.5
+  },
+  "expected": {
+    "required_key_points": [
+      "Baseline Summary",
+      "Retrieval Plan"
+    ]
+  }
+}

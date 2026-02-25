@@ -1,0 +1,23 @@
+{
+  "scenario_id": "s005_qa_latency_cost",
+  "name": "QA retrieves latency and cost slide",
+  "task_type": "qa",
+  "suites": ["smoke"],
+  "input": {
+    "path": "data/processed/sample.jsonl",
+    "question": "Which slide covers p50/p95 latency and cost estimate?",
+    "top_k": 3
+  },
+  "rubric": {
+    "min_citation_recall": 1.0
+  },
+  "expected": {
+    "acceptable_answers": [
+      "latency",
+      "cost"
+    ],
+    "expected_slide_ids": [
+      "fdb513bf99588c7e_s006"
+    ]
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "created_at_utc": "2026-02-25T08:08:23.168075+00:00",
+  "old_report_generated_at": "2026-02-25T08:07:48.400076+00:00",
+  "new_report_generated_at": "2026-02-25T08:08:23.145409+00:00",
+  "deltas": [
+    {
+      "model": "mock",
+      "scenario_id": "s001_summary_core_topics",
+      "delta_score": 0.0,
+      "delta_passed": 0,
+      "status": "existing"
+    },
+    {
+      "model": "mock",
+      "scenario_id": "s002_summary_retrieval_focus",
+      "delta_score": 0.0,
+      "delta_passed": 0,
+      "status": "existing"
+    },
+    {
+      "model": "mock",
+      "scenario_id": "s003_qa_data_pipeline",
+      "delta_score": 0.0,
+      "delta_passed": 0,
+      "status": "existing"
+    },
+    {
+      "model": "mock",
+      "scenario_id": "s004_qa_eval_harness",
+      "delta_score": 0.0,
+      "delta_passed": 0,
+      "status": "existing"
+    },
+    {
+      "model": "mock",
+      "scenario_id": "s005_qa_latency_cost",
+      "delta_score": 0.0,
+      "delta_passed": 0,
+      "status": "existing"
+    }
+  ]
+}

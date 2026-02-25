@@ -1,0 +1,206 @@
+{
+  "suite": "smoke",
+  "models": [
+    "mock"
+  ],
+  "generated_at_utc": "2026-02-25T08:07:48.400076+00:00",
+  "summary": {
+    "total_scenarios": 5,
+    "passed_scenarios": 5,
+    "pass_rate": 1.0,
+    "overall_score": 1.0,
+    "duration_sec": 0.0091
+  },
+  "results": [
+    {
+      "model": "mock",
+      "scenario_id": "s001_summary_core_topics",
+      "task_type": "summary",
+      "passed": true,
+      "score": 1.0,
+      "details": {
+        "metric": {
+          "covered": 3,
+          "total": 3,
+          "coverage": 1.0,
+          "missing": []
+        },
+        "threshold": 0.6,
+        "summary_preview": "Deck summary: SlideCopilot Overview; Data Pipeline; Baseline Summary; Retrieval Plan; Evaluation Harness. This baseline summary is deterministic for regression checks."
+      }
+    },
+    {
+      "model": "mock",
+      "scenario_id": "s002_summary_retrieval_focus",
+      "task_type": "summary",
+      "passed": true,
+      "score": 1.0,
+      "details": {
+        "metric": {
+          "covered": 2,
+          "total": 2,
+          "coverage": 1.0,
+          "missing": []
+        },
+        "threshold": 0.5,
+        "summary_preview": "Deck summary: SlideCopilot Overview; Data Pipeline; Baseline Summary; Retrieval Plan; Evaluation Harness. This baseline summary is deterministic for regression checks."
+      }
+    },
+    {
+      "model": "mock",
+      "scenario_id": "s003_qa_data_pipeline",
+      "task_type": "qa",
+      "passed": true,
+      "score": 1.0,
+      "details": {
+        "answer_metric": {
+          "matched": true,
+          "matched_answer": "jsonl"
+        },
+        "citation_metric": {
+          "matched": 1,
+          "total_expected": 1,
+          "recall": 1.0,
+          "missing": []
+        },
+        "thresholds": {
+          "min_citation_recall": 1.0
+        },
+        "answer_preview": "Based on retrieved slides: data pipeline ingest pptx into jsonl with stable ids and hashes mention schema fields and validation | slidecopilot overview goal summarize and answer questions from decks i",
+        "retrieved_chunks": [
+          {
+            "rank": 1,
+            "score": 0.521749,
+            "chunk_id": "fdb513bf99588c7e_s002_c000",
+            "slide_id": "fdb513bf99588c7e_s002",
+            "doc_id": "fdb513bf99588c7e",
+            "chunk_text": "data pipeline ingest pptx into jsonl with stable ids and hashes mention schema fields and validation",
+            "title": "Data Pipeline"
+          },
+          {
+            "rank": 2,
+            "score": 0.237171,
+            "chunk_id": "fdb513bf99588c7e_s001_c000",
+            "slide_id": "fdb513bf99588c7e_s001",
+            "doc_id": "fdb513bf99588c7e",
+            "chunk_text": "slidecopilot overview goal summarize and answer questions from decks introduce project scope and outcome",
+            "title": "SlideCopilot Overview"
+          },
+          {
+            "rank": 3,
+            "score": 0.126491,
+            "chunk_id": "fdb513bf99588c7e_s006_c000",
+            "slide_id": "fdb513bf99588c7e_s006",
+            "doc_id": "fdb513bf99588c7e",
+            "chunk_text": "latency cost track p50 p95 latency and estimate serving cost benchmarking enables quality speed cost trade offs",
+            "title": "Latency & Cost"
+          }
+        ]
+      }
+    },
+    {
+      "model": "mock",
+      "scenario_id": "s004_qa_eval_harness",
+      "task_type": "qa",
+      "passed": true,
+      "score": 1.0,
+      "details": {
+        "answer_metric": {
+          "matched": true,
+          "matched_answer": "evaluation harness"
+        },
+        "citation_metric": {
+          "matched": 1,
+          "total_expected": 1,
+          "recall": 1.0,
+          "missing": []
+        },
+        "thresholds": {
+          "min_citation_recall": 1.0
+        },
+        "answer_preview": "Based on retrieved slides: slidecopilot overview goal summarize and answer questions from decks introduce project scope and outcome | evaluation harness run scenario based smoke suites with pass fail ",
+        "retrieved_chunks": [
+          {
+            "rank": 1,
+            "score": 0.283473,
+            "chunk_id": "fdb513bf99588c7e_s001_c000",
+            "slide_id": "fdb513bf99588c7e_s001",
+            "doc_id": "fdb513bf99588c7e",
+            "chunk_text": "slidecopilot overview goal summarize and answer questions from decks introduce project scope and outcome",
+            "title": "SlideCopilot Overview"
+          },
+          {
+            "rank": 2,
+            "score": 0.283473,
+            "chunk_id": "fdb513bf99588c7e_s005_c000",
+            "slide_id": "fdb513bf99588c7e_s005",
+            "doc_id": "fdb513bf99588c7e",
+            "chunk_text": "evaluation harness run scenario based smoke suites with pass fail scenarios should mimic real copilot tasks",
+            "title": "Evaluation Harness"
+          },
+          {
+            "rank": 3,
+            "score": 0.178174,
+            "chunk_id": "fdb513bf99588c7e_s002_c000",
+            "slide_id": "fdb513bf99588c7e_s002",
+            "doc_id": "fdb513bf99588c7e",
+            "chunk_text": "data pipeline ingest pptx into jsonl with stable ids and hashes mention schema fields and validation",
+            "title": "Data Pipeline"
+          }
+        ]
+      }
+    },
+    {
+      "model": "mock",
+      "scenario_id": "s005_qa_latency_cost",
+      "task_type": "qa",
+      "passed": true,
+      "score": 1.0,
+      "details": {
+        "answer_metric": {
+          "matched": true,
+          "matched_answer": "latency"
+        },
+        "citation_metric": {
+          "matched": 1,
+          "total_expected": 1,
+          "recall": 1.0,
+          "missing": []
+        },
+        "thresholds": {
+          "min_citation_recall": 1.0
+        },
+        "answer_preview": "Based on retrieved slides: latency cost track p50 p95 latency and estimate serving cost benchmarking enables quality speed cost trade offs | data pipeline ingest pptx into jsonl with stable ids and ha",
+        "retrieved_chunks": [
+          {
+            "rank": 1,
+            "score": 0.6,
+            "chunk_id": "fdb513bf99588c7e_s006_c000",
+            "slide_id": "fdb513bf99588c7e_s006",
+            "doc_id": "fdb513bf99588c7e",
+            "chunk_text": "latency cost track p50 p95 latency and estimate serving cost benchmarking enables quality speed cost trade offs",
+            "title": "Latency & Cost"
+          },
+          {
+            "rank": 2,
+            "score": 0.235702,
+            "chunk_id": "fdb513bf99588c7e_s002_c000",
+            "slide_id": "fdb513bf99588c7e_s002",
+            "doc_id": "fdb513bf99588c7e",
+            "chunk_text": "data pipeline ingest pptx into jsonl with stable ids and hashes mention schema fields and validation",
+            "title": "Data Pipeline"
+          },
+          {
+            "rank": 3,
+            "score": 0.166667,
+            "chunk_id": "fdb513bf99588c7e_s001_c000",
+            "slide_id": "fdb513bf99588c7e_s001",
+            "doc_id": "fdb513bf99588c7e",
+            "chunk_text": "slidecopilot overview goal summarize and answer questions from decks introduce project scope and outcome",
+            "title": "SlideCopilot Overview"
+          }
+        ]
+      }
+    }
+  ]
+}

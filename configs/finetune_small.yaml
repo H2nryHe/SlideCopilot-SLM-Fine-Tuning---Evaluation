@@ -1,0 +1,22 @@
+{
+  "run_name": "small_mock_peft",
+  "backend": "mock_peft",
+  "mode": "qlora",
+  "base_model": "TinyLlama/TinyLlama-1.1B-Chat-v1.0",
+  "seed": 42,
+  "train_steps": 30,
+  "learning_rate": 0.0002,
+  "train_jsonl": "data/processed/sample.jsonl",
+  "eval_suite": "finetune",
+  "base_eval_model": "mock",
+  "output_root": "reports/finetune",
+  "adapter_dir": "artifacts/finetune/small_mock_peft_adapter",
+  "simulate_improvement": true,
+  "repro_tolerance": 1e-9,
+  "lora": {
+    "r": 8,
+    "alpha": 16,
+    "dropout": 0.05,
+    "target_modules": ["q_proj", "v_proj"]
+  }
+}

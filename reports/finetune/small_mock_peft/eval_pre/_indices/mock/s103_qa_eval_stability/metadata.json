@@ -1,0 +1,11 @@
+{
+  "input_jsonl": "/Users/linruihe/Local Documents/Github/SlideCopilot SLM Fine-Tuning & Evaluation/data/processed/sample.jsonl",
+  "index_dir": "/Users/linruihe/Local Documents/Github/SlideCopilot SLM Fine-Tuning & Evaluation/reports/finetune/small_mock_peft/eval_pre/_indices/mock/s103_qa_eval_stability",
+  "backend": "bruteforce",
+  "n_records": 6,
+  "n_chunks": 6,
+  "chunk_size_tokens": 40,
+  "chunk_overlap_tokens": 8,
+  "embedding_dim": 256,
+  "created_at_utc": "2026-02-25T08:37:45.608240+00:00"
+}

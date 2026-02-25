@@ -1,0 +1,38 @@
+{
+  "metadata": {
+    "model": "mock",
+    "seed": 0,
+    "temperature": 0.0,
+    "runtime_sec": 6e-06,
+    "input_path": "/Users/linruihe/Local Documents/Github/SlideCopilot SLM Fine-Tuning & Evaluation/data/processed/stage8_demo.jsonl",
+    "n_slides": 6,
+    "generated_at_utc": "2026-02-25T10:54:47.739336+00:00"
+  },
+  "document_summary": "Deck summary: SlideCopilot Overview; Data Pipeline; Baseline Summary; Retrieval Plan; Evaluation Harness. This baseline summary is deterministic for regression checks.",
+  "slide_bullets": [
+    {
+      "slide_id": "015913be9f51ef26_s001",
+      "bullet": "SlideCopilot Overview"
+    },
+    {
+      "slide_id": "015913be9f51ef26_s002",
+      "bullet": "Data Pipeline"
+    },
+    {
+      "slide_id": "015913be9f51ef26_s003",
+      "bullet": "Baseline Summary"
+    },
+    {
+      "slide_id": "015913be9f51ef26_s004",
+      "bullet": "Retrieval Plan"
+    },
+    {
+      "slide_id": "015913be9f51ef26_s005",
+      "bullet": "Evaluation Harness"
+    },
+    {
+      "slide_id": "015913be9f51ef26_s006",
+      "bullet": "Latency & Cost"
+    }
+  ]
+}

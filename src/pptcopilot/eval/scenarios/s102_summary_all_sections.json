@@ -1,0 +1,22 @@
+{
+  "scenario_id": "s102_summary_all_sections",
+  "name": "Summary should cover all deck sections",
+  "task_type": "summary",
+  "suites": ["finetune"],
+  "input": {
+    "path": "data/processed/sample.jsonl"
+  },
+  "rubric": {
+    "min_keypoint_coverage": 0.95
+  },
+  "expected": {
+    "required_key_points": [
+      "SlideCopilot Overview",
+      "Data Pipeline",
+      "Baseline Summary",
+      "Retrieval Plan",
+      "Evaluation Harness",
+      "Latency & Cost"
+    ]
+  }
+}

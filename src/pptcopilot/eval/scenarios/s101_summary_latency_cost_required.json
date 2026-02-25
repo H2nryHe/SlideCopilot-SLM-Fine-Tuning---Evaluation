@@ -1,0 +1,15 @@
+{
+  "scenario_id": "s101_summary_latency_cost_required",
+  "name": "Summary must include latency and cost topic",
+  "task_type": "summary",
+  "suites": ["finetune"],
+  "input": {
+    "path": "data/processed/sample.jsonl"
+  },
+  "rubric": {
+    "min_keypoint_coverage": 1.0
+  },
+  "expected": {
+    "required_key_points": ["Latency & Cost"]
+  }
+}

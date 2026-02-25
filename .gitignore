@@ -1,0 +1,60 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.Python
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+*.log
+*.pt
+*.bin
+
+# Local data/artifacts
+data/raw/
+data/raw/*
+!data/raw/.gitkeep
+data/processed/
+data/processed/*
+!data/processed/sample.jsonl
+!data/processed/.gitkeep
+data/manifests/*
+!data/manifests/.gitkeep
+reports/*
+!reports/stage1_review.md
+!reports/stage2_review.md
+!reports/stage3_review.md
+!reports/stage4_review.md
+!reports/stage5_review.md
+!reports/stage6_review.md
+!reports/stage7_review.md
+!reports/stage8_review.md
+!reports/eval/
+!reports/eval/latest_report.json
+!reports/eval/latest_report.md
+!reports/finetune/
+!reports/finetune/README.md
+!reports/bench/
+!reports/bench/latency.json
+!reports/bench/cost.json
+!reports/bench/summary.md
+!reports/summaries/
+!reports/summaries/sample_summary.json
+artifacts/
+
+# OS/editor
+.DS_Store
+.idea/
+.vscode/

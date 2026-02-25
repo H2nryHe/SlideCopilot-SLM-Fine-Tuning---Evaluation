@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ppt-copilot"
+version = "0.1.0"
+description = "SlideCopilot SLM fine-tuning and evaluation scaffold."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+finetune = ["transformers>=4.38", "peft>=0.10", "torch>=2.0"]
+api = ["fastapi>=0.110", "uvicorn>=0.27"]
+
+[project.scripts]
+pptcopilot = "pptcopilot.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

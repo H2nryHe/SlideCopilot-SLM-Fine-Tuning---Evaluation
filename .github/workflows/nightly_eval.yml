@@ -1,0 +1,64 @@
+name: Tests And Nightly Eval
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "0 8 * * *"
+  workflow_dispatch:
+
+jobs:
+  test:
+    if: github.event_name == 'pull_request' || github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install package
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e .
+
+      - name: Run tests
+        run: pytest
+
+  nightly-smoke-eval:
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install package
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e .
+
+      - name: Prepare sample data
+        run: |
+          python scripts/generate_sample_pptx.py -o data/raw/sample_deck.pptx
+          pptcopilot ingest data/raw/sample_deck.pptx -o data/processed/sample.jsonl
+
+      - name: Run smoke eval
+        run: |
+          pptcopilot eval run --suite smoke --model mock --outdir reports/eval
+
+      - name: Upload eval reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: nightly-eval-reports
+          path: |
+            reports/eval/latest_report.json
+            reports/eval/latest_report.md

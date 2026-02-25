@@ -1,0 +1,18 @@
+{
+  "scenario_id": "s103_qa_eval_stability",
+  "name": "QA remains stable on evaluation question",
+  "task_type": "qa",
+  "suites": ["finetune"],
+  "input": {
+    "path": "data/processed/sample.jsonl",
+    "question": "Which slide discusses evaluation harness and scenarios?",
+    "top_k": 3
+  },
+  "rubric": {
+    "min_citation_recall": 1.0
+  },
+  "expected": {
+    "acceptable_answers": ["evaluation harness", "scenario"],
+    "expected_slide_ids": ["fdb513bf99588c7e_s005"]
+  }
+}

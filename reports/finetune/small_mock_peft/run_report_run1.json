@@ -1,0 +1,63 @@
+{
+  "run_name": "small_mock_peft",
+  "generated_at_utc": "2026-02-25T08:37:30.290804+00:00",
+  "config": {
+    "config_path": "/Users/linruihe/Local Documents/Github/SlideCopilot SLM Fine-Tuning & Evaluation/configs/finetune_small.yaml",
+    "backend": "mock_peft",
+    "mode": "qlora",
+    "base_model": "TinyLlama/TinyLlama-1.1B-Chat-v1.0",
+    "seed": 42,
+    "train_steps": 30,
+    "learning_rate": 0.0002,
+    "eval_suite": "finetune",
+    "base_eval_model": "mock",
+    "finetuned_model_variant": "finetuned:/Users/linruihe/Local Documents/Github/SlideCopilot SLM Fine-Tuning & Evaluation/artifacts/finetune/small_mock_peft_adapter",
+    "lora": {
+      "r": 8,
+      "alpha": 16,
+      "dropout": 0.05,
+      "target_modules": [
+        "q_proj",
+        "v_proj"
+      ]
+    }
+  },
+  "dataset_manifest": {
+    "dataset_path": "/Users/linruihe/Local Documents/Github/SlideCopilot SLM Fine-Tuning & Evaluation/data/processed/sample.jsonl",
+    "dataset_sha256": "8fa2b860048eab28a45de4050c9472230f0db6725accc20ea77dfe1c2cb2d386",
+    "n_rows": 6,
+    "slide_ids_sha256": "c97972a977fc59c957c7b110322558f7ac0cc12dac0d60693685d7cb185bb0f2"
+  },
+  "training_metrics": {
+    "train_loss_start": 2.172932,
+    "train_loss_end": 1.778471,
+    "train_loss_delta": 0.394461
+  },
+  "backend_info": {
+    "backend_mode": "mock"
+  },
+  "artifacts": {
+    "run_dir": "/Users/linruihe/Local Documents/Github/SlideCopilot SLM Fine-Tuning & Evaluation/reports/finetune/small_mock_peft",
+    "adapter_dir": "/Users/linruihe/Local Documents/Github/SlideCopilot SLM Fine-Tuning & Evaluation/artifacts/finetune/small_mock_peft_adapter",
+    "adapter_config": "/Users/linruihe/Local Documents/Github/SlideCopilot SLM Fine-Tuning & Evaluation/artifacts/finetune/small_mock_peft_adapter/adapter_config.json",
+    "peft_config": "/Users/linruihe/Local Documents/Github/SlideCopilot SLM Fine-Tuning & Evaluation/artifacts/finetune/small_mock_peft_adapter/peft_config.json"
+  },
+  "eval_before": {
+    "overall_score": 0.6111,
+    "pass_rate": 0.3333,
+    "report_json": "/Users/linruihe/Local Documents/Github/SlideCopilot SLM Fine-Tuning & Evaluation/reports/finetune/small_mock_peft/eval_pre/latest_report.json",
+    "report_md": "/Users/linruihe/Local Documents/Github/SlideCopilot SLM Fine-Tuning & Evaluation/reports/finetune/small_mock_peft/eval_pre/latest_report.md"
+  },
+  "eval_after": {
+    "overall_score": 1.0,
+    "pass_rate": 1.0,
+    "report_json": "/Users/linruihe/Local Documents/Github/SlideCopilot SLM Fine-Tuning & Evaluation/reports/finetune/small_mock_peft/eval_post/latest_report.json",
+    "report_md": "/Users/linruihe/Local Documents/Github/SlideCopilot SLM Fine-Tuning & Evaluation/reports/finetune/small_mock_peft/eval_post/latest_report.md"
+  },
+  "eval_delta": {
+    "overall_score_delta": 0.3889,
+    "pass_rate_delta": 0.6667,
+    "delta_details_path": "/Users/linruihe/Local Documents/Github/SlideCopilot SLM Fine-Tuning & Evaluation/reports/finetune/small_mock_peft/eval_delta.json",
+    "tradeoff_note": null
+  }
+}

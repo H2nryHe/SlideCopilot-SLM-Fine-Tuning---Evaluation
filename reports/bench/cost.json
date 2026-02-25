@@ -1,0 +1,24 @@
+{
+  "generated_at_utc": "2026-02-25T10:54:48.247074+00:00",
+  "source_latency_report": "/Users/linruihe/Local Documents/Github/SlideCopilot SLM Fine-Tuning & Evaluation/reports/bench/latency.json",
+  "assumptions": {
+    "cost_per_gpu_hour_usd": 1.8,
+    "utilization": 0.7,
+    "uses_p95_latency": true,
+    "formula": "(gpu_hour_cost/3600/utilization) * latency_sec * 1000"
+  },
+  "results": [
+    {
+      "variant": "baseline",
+      "summarize_usd_per_1k_req_p95": 0.0001,
+      "qa_usd_per_1k_req_p95": 0.0003,
+      "blended_usd_per_1k_req_p95": 0.0002
+    },
+    {
+      "variant": "fast",
+      "summarize_usd_per_1k_req_p95": 0.0006,
+      "qa_usd_per_1k_req_p95": 0.001,
+      "blended_usd_per_1k_req_p95": 0.0008
+    }
+  ]
+}

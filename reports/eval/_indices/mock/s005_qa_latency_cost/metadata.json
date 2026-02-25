@@ -1,0 +1,11 @@
+{
+  "input_jsonl": "/Users/linruihe/Local Documents/Github/SlideCopilot SLM Fine-Tuning & Evaluation/data/processed/sample.jsonl",
+  "index_dir": "/Users/linruihe/Local Documents/Github/SlideCopilot SLM Fine-Tuning & Evaluation/reports/eval/_indices/mock/s005_qa_latency_cost",
+  "backend": "bruteforce",
+  "n_records": 6,
+  "n_chunks": 6,
+  "chunk_size_tokens": 40,
+  "chunk_overlap_tokens": 8,
+  "embedding_dim": 256,
+  "created_at_utc": "2026-02-25T10:54:47.965465+00:00"
+}
