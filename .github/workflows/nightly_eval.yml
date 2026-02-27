@@ -26,6 +26,11 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install -e ".[dev]"
 
+      - name: Prepare sample data
+        run: |
+          python scripts/generate_sample_pptx.py -o data/raw/sample_deck.pptx
+          pptcopilot ingest data/raw/sample_deck.pptx -o data/processed/sample.jsonl
+
       - name: Run tests
         run: python -m pytest -q
 
