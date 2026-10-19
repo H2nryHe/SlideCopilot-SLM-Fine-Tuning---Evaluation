@@ -7,7 +7,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from pptcopilot.config import get_generation_defaults, get_retrieval_defaults
-from pptcopilot.qa.citations import unique_slide_citations
+from pptcopilot.qa.citations import select_answer_citations
 from pptcopilot.qa.generate import generate_answer
 from pptcopilot.retrieval.retrieve import retrieve_top_k
 
@@ -26,13 +26,13 @@ def answer_question(
 
     retrieval = retrieve_top_k(index_dir, question, top_k=top_k)
     hits = retrieval["hits"]
-    citations = unique_slide_citations(hits)
     answer = generate_answer(
         question,
         hits,
         backend=generator,
         max_new_tokens=generation_defaults.max_new_tokens,
     )
+    citations = select_answer_citations(answer, hits)
 
     payload: dict[str, object] = {
         "question": question,
