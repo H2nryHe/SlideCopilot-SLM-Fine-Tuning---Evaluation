@@ -43,9 +43,11 @@ def chunk_record(
     slide_text = str(record.get("slide_text", "")).strip()
     notes_text = str(record.get("notes_text", "")).strip()
     combined = " ".join(x for x in [slide_text, notes_text] if x).strip()
-    tokens = tokenize(combined)
+    # Preserve surface text (case, decimals, %, punctuation) for generation/citations.
+    # Retrieval normalization still happens inside the embedding backends.
+    surface_tokens = combined.split()
     token_chunks = chunk_tokens(
-        tokens,
+        surface_tokens,
         chunk_size=chunk_size_tokens,
         overlap=chunk_overlap_tokens,
     )
