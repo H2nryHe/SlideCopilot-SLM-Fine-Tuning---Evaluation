@@ -197,7 +197,16 @@ Reported metrics:
 - Answer Accuracy
 - Citation Recall
 
-Do not copy example numbers into the README. Only results produced by an actual benchmark run should be reported.
+### Measured Milestone 1 results
+
+These values come from GitHub Actions run `39324787023`, successful attempt 2, on the frozen 10-query held-out set.
+
+| System | Recall@1 | Recall@5 | Recall@10 | MRR | Answer Accuracy | Citation Recall |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| Hash + FAISS + FLAN-T5-small | 0.40 | 0.90 | 1.00 | 0.60 | 0.40 | 0.40 |
+| Dense + FAISS + FLAN-T5-small | **1.00** | **1.00** | **1.00** | **1.00** | **0.50** | **0.50** |
+
+The experiment shows a clear retrieval win: Dense retrieval returned the relevant slide at rank 1 for all held-out queries. Generation is now the dominant bottleneck. Full methodology, artifact digests, failure analysis, and the negative generation-context ablation are documented in `reports/eval/MILESTONE1_EXPERIMENT.md`.
 
 ### CI evidence
 
