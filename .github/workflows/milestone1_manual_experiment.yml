@@ -1,0 +1,52 @@
+name: Milestone 1 Manual Real RAG Experiment
+
+on:
+  workflow_dispatch:
+
+jobs:
+  real-rag-experiment:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Checkout experiment branch
+        uses: actions/checkout@v4
+        with:
+          ref: milestone-1-real-rag-eval
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Cache Hugging Face models
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: milestone1-hf-rag-v1
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e ".[dev,rag]"
+
+      - name: Run non-RAG regression tests
+        run: python -m pytest -q -m "not rag"
+
+      - name: Run real dense integration test
+        run: python -m pytest -q -m rag
+
+      - name: Run Hash vs Dense benchmark
+        run: |
+          pptcopilot eval rag \
+            --retriever hash \
+            --retriever dense \
+            --generator hf:google/flan-t5-small \
+            -o reports/eval/milestone1_rag.json
+
+      - name: Upload benchmark artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: milestone1-real-rag-benchmark
+          path: reports/eval/milestone1_rag.json
+          if-no-files-found: warn
