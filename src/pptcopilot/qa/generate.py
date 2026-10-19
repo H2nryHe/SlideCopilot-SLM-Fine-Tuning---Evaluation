@@ -5,12 +5,12 @@ from __future__ import annotations
 from functools import lru_cache
 
 
-def _context_block(hits: list[dict[str, object]], *, max_chunks: int = 3) -> str:
-    """Build generation context without exposing citation IDs to the model."""
+def _context_block(hits: list[dict[str, object]], *, max_chunks: int = 5) -> str:
     lines: list[str] = []
-    for rank, hit in enumerate(hits[:max_chunks], start=1):
+    for hit in hits[:max_chunks]:
+        slide_id = str(hit.get("slide_id", ""))
         text = str(hit.get("chunk_text", ""))
-        lines.append(f"Context item {rank}: {text}")
+        lines.append(f"[{slide_id}] {text}")
     return "\n".join(lines)
 
 
@@ -52,8 +52,6 @@ def hf_answer(
 
     prompt = (
         "Answer the question using only the context below. "
-        "Return the requested value, name, metric, or short phrase directly. "
-        "Do not output context labels and do not copy whole context items. "
         "If the context does not contain the answer, output exactly INSUFFICIENT_CONTEXT. "
         "Return only a concise answer, not an explanation.\n\n"
         f"Question: {question}\n\n"
