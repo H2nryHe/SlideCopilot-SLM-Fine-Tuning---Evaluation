@@ -32,7 +32,16 @@ class RetrievalDefaults:
     chunk_size_tokens: int = 40
     chunk_overlap_tokens: int = 8
     embedding_dim: int = 256
-    top_k: int = 3
+    top_k: int = 5
+    dense_embedding_model: str = "sentence-transformers/all-MiniLM-L6-v2"
+
+
+@dataclass(frozen=True)
+class GenerationDefaults:
+    """Defaults for retrieval-grounded answer generation."""
+
+    backend: str = "hf:google/flan-t5-small"
+    max_new_tokens: int = 64
 
 
 @dataclass(frozen=True)
@@ -66,6 +75,10 @@ def get_summarize_defaults() -> SummarizeDefaults:
 
 def get_retrieval_defaults() -> RetrievalDefaults:
     return RetrievalDefaults()
+
+
+def get_generation_defaults() -> GenerationDefaults:
+    return GenerationDefaults()
 
 
 def get_bench_defaults() -> BenchDefaults:

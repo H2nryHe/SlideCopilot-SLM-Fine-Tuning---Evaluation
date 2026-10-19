@@ -1,4 +1,4 @@
-"""Simple deterministic metrics for SPOCK-lite scenarios."""
+"""Deterministic evaluation metrics for SlideCopilot."""
 
 from __future__ import annotations
 
@@ -51,3 +51,35 @@ def citation_recall(
         "recall": round(recall, 4),
         "missing": missing,
     }
+
+
+def _unique_ranked_slide_ids(slide_ids: list[str]) -> list[str]:
+    return list(dict.fromkeys(slide_ids))
+
+
+def retrieval_recall_at_k(
+    ranked_slide_ids: list[str],
+    expected_slide_ids: list[str],
+    *,
+    k: int,
+) -> float:
+    if k <= 0:
+        raise ValueError("k must be positive")
+    expected = set(expected_slide_ids)
+    if not expected:
+        return 1.0
+    ranked = _unique_ranked_slide_ids(ranked_slide_ids)[:k]
+    return len(expected.intersection(ranked)) / len(expected)
+
+
+def reciprocal_rank(
+    ranked_slide_ids: list[str],
+    expected_slide_ids: list[str],
+) -> float:
+    expected = set(expected_slide_ids)
+    if not expected:
+        return 1.0
+    for rank, slide_id in enumerate(_unique_ranked_slide_ids(ranked_slide_ids), start=1):
+        if slide_id in expected:
+            return 1.0 / rank
+    return 0.0

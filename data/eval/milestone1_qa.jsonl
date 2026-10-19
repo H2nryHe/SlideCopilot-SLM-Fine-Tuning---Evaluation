@@ -1,0 +1,10 @@
+{"id":"q01","question":"How quickly did the company's top line expand from a year earlier?","expected_slide_ids":["evaldeck_s001"],"acceptable_answers":["18 percent","18%"]}
+{"id":"q02","question":"What was the quarterly profitability margin?","expected_slide_ids":["evaldeck_s002"],"acceptable_answers":["18.7 percent","18.7%"]}
+{"id":"q03","question":"How sticky and expansionary were existing customers?","expected_slide_ids":["evaldeck_s003"],"acceptable_answers":["112 percent","112%"]}
+{"id":"q04","question":"How much liquid money was on hand at the end of the quarter?","expected_slide_ids":["evaldeck_s004"],"acceptable_answers":["74 million","74m"]}
+{"id":"q05","question":"Which independent assurance standard did the company complete?","expected_slide_ids":["evaldeck_s006"],"acceptable_answers":["SOC 2 Type II","soc2 type ii"]}
+{"id":"q06","question":"What share of sales came from Europe, the Middle East, and Africa?","expected_slide_ids":["evaldeck_s008"],"acceptable_answers":["24 percent","24%"]}
+{"id":"q07","question":"By how much did per-request infrastructure expense decline?","expected_slide_ids":["evaldeck_s009"],"acceptable_answers":["31 percent","31%"]}
+{"id":"q08","question":"Which metric checks whether relevant evidence appears in the retrieved context?","expected_slide_ids":["evaldeck_s010"],"acceptable_answers":["Recall@5","recall at 5"]}
+{"id":"q09","question":"What tail-latency objective is set for the full serving path?","expected_slide_ids":["evaldeck_s011"],"acceptable_answers":["below 2 seconds","under 2 seconds","2 seconds"]}
+{"id":"q10","question":"What are the next retrieval and productionization priorities?","expected_slide_ids":["evaldeck_s012"],"acceptable_answers":["hybrid retrieval","reranking","health checks"]}

@@ -125,3 +125,94 @@ Optional GIF route:
 
 - CLI now emits structured JSON errors and logs stack traces.
 - API endpoints return HTTP 400 with informative `detail` messages.
+
+
+## Milestone 1 — Real RAG + Held-out Evaluation
+
+This branch upgrades the retrieval/QA path from deterministic scaffolding to a real end-to-end RAG system.
+
+### Install real RAG dependencies
+
+```bash
+python -m pip install -e ".[rag]"
+```
+
+### Build the deterministic Hash baseline
+
+```bash
+pptcopilot index data/processed/sample.jsonl \
+  --index-dir artifacts/index/hash \
+  --retriever hash
+```
+
+### Build a real Dense + FAISS index
+
+```bash
+pptcopilot index data/processed/sample.jsonl \
+  --index-dir artifacts/index/dense \
+  --retriever dense \
+  --embedding-model sentence-transformers/all-MiniLM-L6-v2
+```
+
+Dense mode uses a real SentenceTransformer model with L2-normalized embeddings and a FAISS inner-product index. It fails explicitly when the required dependencies are unavailable; it does not silently fall back to a mock embedding.
+
+### Run real retrieval-grounded generation
+
+```bash
+pptcopilot qa \
+  --index-dir artifacts/index/dense \
+  --question "Which slide discusses evaluation quality?" \
+  --generator hf:google/flan-t5-small \
+  --debug \
+  -o reports/qa/real_rag.json
+```
+
+The default local real generator is `google/flan-t5-small`. The legacy deterministic `extractive` generator remains available for fast unit tests.
+
+### Frozen held-out benchmark
+
+Milestone 1 adds a controlled held-out corpus and QA set:
+
+- `data/eval/milestone1_corpus.jsonl`
+- `data/eval/milestone1_qa.jsonl`
+
+The queries deliberately use semantic paraphrases instead of copying slide keywords. This makes the Hash vs Dense comparison meaningful.
+
+Run the benchmark:
+
+```bash
+pptcopilot eval rag \
+  --retriever hash \
+  --retriever dense \
+  --generator hf:google/flan-t5-small \
+  -o reports/eval/milestone1_rag.json
+```
+
+Reported metrics:
+
+- Recall@1
+- Recall@5
+- Recall@10
+- MRR
+- Answer Accuracy
+- Citation Recall
+
+### Measured Milestone 1 results
+
+These values come from GitHub Actions run `39324787023`, successful attempt 2, on the frozen 10-query held-out set.
+
+| System | Recall@1 | Recall@5 | Recall@10 | MRR | Answer Accuracy | Citation Recall |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| Hash + FAISS + FLAN-T5-small | 0.40 | 0.90 | 1.00 | 0.60 | 0.40 | 0.40 |
+| Dense + FAISS + FLAN-T5-small | **1.00** | **1.00** | **1.00** | **1.00** | **0.50** | **0.50** |
+
+The experiment shows a clear retrieval win: Dense retrieval returned the relevant slide at rank 1 for all held-out queries. Generation is now the dominant bottleneck. Full methodology, artifact digests, failure analysis, and the negative generation-context ablation are documented in `reports/eval/MILESTONE1_EXPERIMENT.md`.
+
+### CI evidence
+
+Pull requests run two layers:
+
+1. deterministic unit/regression tests without model downloads;
+2. a `real-rag` integration job that installs the actual RAG dependencies, downloads the embedding/generation models, runs a real Dense + FAISS test, then executes the Hash vs Dense held-out benchmark.
+
+The resulting `milestone1_rag.json` is uploaded as the `milestone1-real-rag-benchmark` workflow artifact.

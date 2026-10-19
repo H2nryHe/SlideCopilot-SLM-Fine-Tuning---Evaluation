@@ -4,16 +4,24 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "ppt-copilot"
-version = "0.1.0"
-description = "SlideCopilot SLM fine-tuning and evaluation scaffold."
+version = "0.2.0"
+description = "SlideCopilot retrieval-grounded PowerPoint assistant and evaluation harness."
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = []
 
 [project.optional-dependencies]
 dev = ["pytest>=8.0"]
-finetune = ["transformers>=4.38", "peft>=0.10", "torch>=2.0"]
+finetune = ["transformers>=4.38,<6", "peft>=0.10", "torch>=2.0"]
 api = ["fastapi>=0.110", "uvicorn>=0.27"]
+rag = [
+  "numpy>=1.26,<3",
+  "faiss-cpu>=1.8.0",
+  "sentence-transformers>=3.0",
+  "transformers>=4.44,<6",
+  "torch>=2.2",
+  "sentencepiece>=0.2",
+]
 
 [project.scripts]
 pptcopilot = "pptcopilot.cli:main"
@@ -27,3 +35,6 @@ where = ["src"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "-q"
+markers = [
+  "rag: integration tests that download and run real embedding/generation models",
+]
