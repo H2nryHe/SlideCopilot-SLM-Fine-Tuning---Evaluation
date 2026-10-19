@@ -4,6 +4,8 @@ import json
 from pathlib import Path
 
 from pptcopilot.qa.answer import answer_question
+from pptcopilot.qa.citations import select_answer_citations
+from pptcopilot.qa.generate import generate_answer
 from pptcopilot.retrieval.index_faiss import build_index
 from pptcopilot.retrieval.retrieve import retrieve_top_k
 
@@ -72,3 +74,32 @@ def test_qa_returns_citations_and_debug_chunks(tmp_path: Path) -> None:
     assert "answer" in answer
     assert "deck1_s002" in answer["cited_slide_ids"]
     assert len(answer["retrieved_chunks"]) >= 1
+
+
+def test_citation_matching_ignores_trailing_sentence_punctuation() -> None:
+    hits = [
+        {
+            "slide_id": "s1",
+            "chunk_text": "The p95 latency target is below 2 seconds.",
+        }
+    ]
+    assert select_answer_citations("2 seconds", hits) == ["s1"]
+
+
+def test_hf_qa_backend_dispatches_model_name(monkeypatch) -> None:
+    observed: dict[str, object] = {}
+
+    def fake_hf_qa_answer(question, hits, *, model_name):
+        observed.update(question=question, hits=hits, model_name=model_name)
+        return "74 million"
+
+    monkeypatch.setattr("pptcopilot.qa.generate.hf_qa_answer", fake_hf_qa_answer)
+    hits = [{"slide_id": "s1", "chunk_text": "Cash was 74 million."}]
+    answer = generate_answer("How much cash?", hits, backend="hf-qa:local/qa-model")
+
+    assert answer == "74 million"
+    assert observed == {
+        "question": "How much cash?",
+        "hits": hits,
+        "model_name": "local/qa-model",
+    }

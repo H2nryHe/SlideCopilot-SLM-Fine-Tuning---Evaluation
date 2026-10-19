@@ -5,7 +5,9 @@ from __future__ import annotations
 import re
 
 
-TOKEN_RE = re.compile(r"[A-Za-z0-9_.%$@-]+")
+# Permit internal dots (for values such as 18.7) without treating trailing
+# sentence punctuation as part of the token ("seconds." != "seconds").
+TOKEN_RE = re.compile(r"[A-Za-z0-9_%$@-]+(?:\.[A-Za-z0-9_%$@-]+)*")
 STOPWORDS = {
     "a", "an", "and", "are", "as", "at", "based", "be", "below", "by", "for",
     "from", "in", "is", "it", "of", "on", "or", "slide", "slides", "the", "this",

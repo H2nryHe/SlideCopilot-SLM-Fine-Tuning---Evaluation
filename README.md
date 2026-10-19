@@ -216,3 +216,44 @@ Pull requests run two layers:
 2. a `real-rag` integration job that installs the actual RAG dependencies, downloads the embedding/generation models, runs a real Dense + FAISS test, then executes the Hash vs Dense held-out benchmark.
 
 The resulting `milestone1_rag.json` is uploaded as the `milestone1-real-rag-benchmark` workflow artifact.
+
+## Milestone 1.5 — Generation Upgrade
+
+Milestone 1.5 keeps the Milestone 1 corpus, 10-query held-out set,
+`all-MiniLM-L6-v2` Dense retriever, FAISS index settings, and answer labels frozen.
+The runner refuses to execute when either input digest or the embedding model differs
+from the frozen protocol.
+
+Run the generation-only comparison:
+
+```bash
+pptcopilot eval generation \
+  --generator hf:google/flan-t5-small \
+  --generator hf:google/flan-t5-base \
+  --generator hf-qa:deepset/roberta-base-squad2 \
+  -o reports/eval/milestone1_5_generation.json
+```
+
+Each model receives the same precomputed retrieval results in three conditions:
+
+- Dense top-5: the production-style multi-evidence context;
+- Dense top-1: only the highest-ranked Dense result;
+- oracle evidence: chunks selected directly from the held-out expected slide IDs.
+
+Measured results from the final local run:
+
+| Generator | Context | Dense Recall@1 | Answer Accuracy | Citation Recall |
+| --- | --- | ---: | ---: | ---: |
+| FLAN-T5-small | Dense top-5 | 1.00 | 0.50 | 0.50 |
+| FLAN-T5-small | Dense top-1 | 1.00 | 0.70 | 0.90 |
+| FLAN-T5-base | Dense top-5 | 1.00 | 0.50 | 0.80 |
+| FLAN-T5-base | Dense top-1 | 1.00 | 0.70 | 0.90 |
+| **RoBERTa extractive QA** | **Dense top-5** | **1.00** | **0.80** | **0.90** |
+| **RoBERTa extractive QA** | **Dense top-1** | **1.00** | **0.90** | **1.00** |
+| **RoBERTa extractive QA** | **Oracle evidence** | **1.00** | **0.90** | **1.00** |
+
+The stronger FLAN and Qwen instruct candidates did not beat the original model; those
+negative results are retained alongside the final artifact. The task-specific local QA
+model meets the 0.80 target at top-5 and reaches 0.90 when distractors are removed.
+See `reports/eval/MILESTONE1_5_GENERATION_UPGRADE.md` for digests, model revisions,
+per-experiment results, and the remaining error attribution.

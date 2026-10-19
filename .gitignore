@@ -44,6 +44,11 @@ reports/*
 !reports/eval/
 !reports/eval/latest_report.json
 !reports/eval/latest_report.md
+!reports/eval/MILESTONE1_EXPERIMENT.md
+!reports/eval/MILESTONE1_5_GENERATION_UPGRADE.md
+!reports/eval/milestone1_5_*.json
+!reports/eval/milestone1_5_*.json.sha256
+reports/eval/_generation_index/
 !reports/finetune/
 !reports/finetune/README.md
 !reports/bench/

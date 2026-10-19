@@ -14,6 +14,12 @@ from pptcopilot.bench.cost import run_cost_estimate, write_bench_summary_markdow
 from pptcopilot.bench.latency import run_latency_benchmark
 from pptcopilot.config import get_paths, get_retrieval_defaults
 from pptcopilot.eval.harness import run_eval_suite
+from pptcopilot.eval.generation_benchmark import (
+    DEFAULT_GENERATORS,
+    FROZEN_DENSE_MODEL,
+    run_generation_benchmark,
+    write_sha256_sidecar,
+)
 from pptcopilot.eval.rag_benchmark import run_rag_benchmark
 from pptcopilot.eval.report import compare_reports, write_report_json
 from pptcopilot.io.ingest_pptx import ingest_pptx, validate_records, write_jsonl
@@ -116,7 +122,10 @@ def build_parser() -> argparse.ArgumentParser:
     qa_parser.add_argument(
         "--generator",
         default="extractive",
-        help="Answer generator: extractive or hf:<model_name>.",
+        help=(
+            "Answer generator: extractive, hf:<model_name>, hf-qa:<model_name>, "
+            "hf-span:<model_name>, or hf-causal:<model_name>."
+        ),
     )
     qa_parser.add_argument("-o", "--output", required=True, help="Output answer JSON path")
     qa_parser.set_defaults(func=_run_qa)
@@ -176,6 +185,43 @@ def build_parser() -> argparse.ArgumentParser:
         help="Benchmark report JSON output.",
     )
     eval_rag_parser.set_defaults(func=_run_eval_rag)
+
+    eval_generation_parser = eval_subparsers.add_parser(
+        "generation",
+        help="Run Milestone 1.5 generation-only evaluation on frozen Dense retrieval.",
+    )
+    eval_generation_parser.add_argument(
+        "--corpus",
+        default="data/eval/milestone1_corpus.jsonl",
+        help="Frozen Milestone 1 slide corpus JSONL.",
+    )
+    eval_generation_parser.add_argument(
+        "--dataset",
+        default="data/eval/milestone1_qa.jsonl",
+        help="Frozen Milestone 1 held-out QA JSONL.",
+    )
+    eval_generation_parser.add_argument(
+        "--generator",
+        action="append",
+        dest="generators",
+        help=(
+            "Generator to compare; repeat for multiple models. "
+            f"Default: {', '.join(DEFAULT_GENERATORS)}."
+        ),
+    )
+    eval_generation_parser.add_argument(
+        "--answer-top-k",
+        type=int,
+        default=5,
+        help="Dense top-k generation context size (default: 5).",
+    )
+    eval_generation_parser.add_argument(
+        "-o",
+        "--output",
+        default="reports/eval/milestone1_5_generation.json",
+        help="Generation benchmark JSON output.",
+    )
+    eval_generation_parser.set_defaults(func=_run_eval_generation)
 
     eval_compare_parser = eval_subparsers.add_parser(
         "compare",
@@ -373,6 +419,40 @@ def _run_eval_rag(args: argparse.Namespace) -> int:
                     {
                         "retriever": system["retriever"],
                         **system["metrics"],
+                    }
+                    for system in report["systems"]
+                ],
+            },
+            ensure_ascii=True,
+        )
+    )
+    return 0
+
+
+def _run_eval_generation(args: argparse.Namespace) -> int:
+    generators = args.generators if args.generators else list(DEFAULT_GENERATORS)
+    report = run_generation_benchmark(
+        corpus_path=args.corpus,
+        dataset_path=args.dataset,
+        out_path=args.output,
+        generators=generators,
+        embedding_model=FROZEN_DENSE_MODEL,
+        answer_top_k=args.answer_top_k,
+    )
+    digest_path = write_sha256_sidecar(args.output)
+    print(
+        json.dumps(
+            {
+                "status": "ok",
+                "output_path": str(Path(args.output).resolve()),
+                "digest_path": str(digest_path.resolve()),
+                "retrieval_metrics": report["retrieval_metrics"],
+                "systems": [
+                    {
+                        "generator": system["generator"],
+                        "context_condition": system["context_condition"],
+                        "answer_accuracy": system["metrics"]["answer_accuracy"],
+                        "citation_recall": system["metrics"]["citation_recall"],
                     }
                     for system in report["systems"]
                 ],

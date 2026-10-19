@@ -1,0 +1,2838 @@
+{
+  "benchmark": "milestone1_5_generation_upgrade",
+  "generated_at_utc": "2026-10-19T21:38:23.172364+00:00",
+  "protocol": {
+    "frozen": true,
+    "corpus": {
+      "path": "data/eval/milestone1_corpus.jsonl",
+      "sha256": "82f8942c01f0e0c37e0e734eeaf2cdadf820522cf6fe4051149380ac63cdaf77",
+      "expected_sha256": "82f8942c01f0e0c37e0e734eeaf2cdadf820522cf6fe4051149380ac63cdaf77"
+    },
+    "dataset": {
+      "path": "data/eval/milestone1_qa.jsonl",
+      "sha256": "4eea99dca6c5e78afab678f848a12be66c6680245e48c5accc016f6f93c3c9d6",
+      "expected_sha256": "4eea99dca6c5e78afab678f848a12be66c6680245e48c5accc016f6f93c3c9d6"
+    },
+    "retriever": "dense",
+    "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+    "retrieval_evaluation_depth": 10,
+    "generation_contexts": {
+      "dense_top_k": 5,
+      "dense_top_1": 1,
+      "oracle_evidence": "all chunks from expected_slide_ids"
+    }
+  },
+  "runtime": {
+    "python": "3.10.9",
+    "platform": "macOS-26.5.1-x86_64-i386-64bit"
+  },
+  "index": {
+    "input_jsonl": "/Users/linruihe/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/repo/data/eval/milestone1_corpus.jsonl",
+    "index_dir": "/Users/linruihe/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/repo/reports/eval/_generation_index/dense",
+    "retriever": "dense",
+    "backend": "faiss",
+    "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+    "n_records": 12,
+    "n_chunks": 12,
+    "chunk_size_tokens": 40,
+    "chunk_overlap_tokens": 8,
+    "embedding_dim": 384,
+    "created_at_utc": "2026-10-19T21:36:37.274822+00:00"
+  },
+  "retrieval_metrics": {
+    "recall_at_1": 1.0,
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "mrr": 1.0,
+    "n_queries": 10
+  },
+  "systems": [
+    {
+      "generator": "hf-span:google/flan-t5-base",
+      "model": {
+        "requested_name": "google/flan-t5-base",
+        "resolved_name_or_path": "google/flan-t5-base",
+        "revision": "7bcac572ce56db69c1ea7c8af255c5d7c9672fc2",
+        "architecture": "T5ForConditionalGeneration",
+        "parameter_count": 247577856,
+        "transformers_version": "4.57.1"
+      },
+      "prompt_version": "exact_span_v1",
+      "context_condition": "dense_top_k",
+      "context_top_k": 5,
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "mrr": 1.0,
+        "n_queries": 10,
+        "answer_accuracy": 0.6,
+        "citation_recall": 0.9,
+        "runtime_seconds": 12.79
+      },
+      "error_counts": {
+        "generation_failure_with_expected_evidence": 4,
+        "success": 6
+      },
+      "queries": [
+        {
+          "id": "q01",
+          "question": "How quickly did the company's top line expand from a year earlier?",
+          "expected_slide_ids": [
+            "evaldeck_s001"
+          ],
+          "acceptable_answers": [
+            "18 percent",
+            "18%"
+          ],
+          "retrieval": {
+            "top_10_slide_ids": [
+              "evaldeck_s001",
+              "evaldeck_s003",
+              "evaldeck_s002",
+              "evaldeck_s005",
+              "evaldeck_s008",
+              "evaldeck_s007",
+              "evaldeck_s004",
+              "evaldeck_s009",
+              "evaldeck_s011",
+              "evaldeck_s012"
+            ],
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "context_slide_ids": [
+            "evaldeck_s001",
+            "evaldeck_s003",
+            "evaldeck_s002",
+            "evaldeck_s005",
+            "evaldeck_s008"
+          ],
+          "answer": "18 percent year over year",
+          "cited_slide_ids": [
+            "evaldeck_s001",
+            "evaldeck_s002"
+          ],
+          "metrics": {
+            "answer_correct": true,
+            "matched_answer": "18 percent",
+            "citation_recall": 1.0
+          },
+          "error_cause": "success"
+        },
+        {
+          "id": "q02",
+          "question": "What was the quarterly profitability margin?",
+          "expected_slide_ids": [
+            "evaldeck_s002"
+          ],
+          "acceptable_answers": [
+            "18.7 percent",
+            "18.7%"
+          ],
+          "retrieval": {
+            "top_10_slide_ids": [
+              "evaldeck_s002",
+              "evaldeck_s001",
+              "evaldeck_s004",
+              "evaldeck_s003",
+              "evaldeck_s008",
+              "evaldeck_s009",
+              "evaldeck_s006",
+              "evaldeck_s011",
+              "evaldeck_s010",
+              "evaldeck_s005"
+            ],
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "context_slide_ids": [
+            "evaldeck_s002",
+            "evaldeck_s001",
+            "evaldeck_s004",
+            "evaldeck_s003",
+            "evaldeck_s008"
+          ],
+          "answer": "18.7 percent",
+          "cited_slide_ids": [
+            "evaldeck_s002",
+            "evaldeck_s001"
+          ],
+          "metrics": {
+            "answer_correct": true,
+            "matched_answer": "18.7 percent",
+            "citation_recall": 1.0
+          },
+          "error_cause": "success"
+        },
+        {
+          "id": "q03",
+          "question": "How sticky and expansionary were existing customers?",
+          "expected_slide_ids": [
+            "evaldeck_s003"
+          ],
+          "acceptable_answers": [
+            "112 percent",
+            "112%"
+          ],
+          "retrieval": {
+            "top_10_slide_ids": [
+              "evaldeck_s003",
+              "evaldeck_s008",
+              "evaldeck_s001",
+              "evaldeck_s005",
+              "evaldeck_s007",
+              "evaldeck_s002",
+              "evaldeck_s004",
+              "evaldeck_s009",
+              "evaldeck_s006",
+              "evaldeck_s011"
+            ],
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "context_slide_ids": [
+            "evaldeck_s003",
+            "evaldeck_s008",
+            "evaldeck_s001",
+            "evaldeck_s005",
+            "evaldeck_s007"
+          ],
+          "answer": "Strong",
+          "cited_slide_ids": [
+            "evaldeck_s003"
+          ],
+          "metrics": {
+            "answer_correct": false,
+            "matched_answer": null,
+            "citation_recall": 1.0
+          },
+          "error_cause": "generation_failure_with_expected_evidence"
+        },
+        {
+          "id": "q04",
+          "question": "How much liquid money was on hand at the end of the quarter?",
+          "expected_slide_ids": [
+            "evaldeck_s004"
+          ],
+          "acceptable_answers": [
+            "74 million",
+            "74m"
+          ],
+          "retrieval": {
+            "top_10_slide_ids": [
+              "evaldeck_s004",
+              "evaldeck_s001",
+              "evaldeck_s002",
+              "evaldeck_s008",
+              "evaldeck_s003",
+              "evaldeck_s011",
+              "evaldeck_s010",
+              "evaldeck_s009",
+              "evaldeck_s006",
+              "evaldeck_s005"
+            ],
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "context_slide_ids": [
+            "evaldeck_s004",
+            "evaldeck_s001",
+            "evaldeck_s002",
+            "evaldeck_s008",
+            "evaldeck_s003"
+          ],
+          "answer": "74 million dollars",
+          "cited_slide_ids": [
+            "evaldeck_s004",
+            "evaldeck_s001"
+          ],
+          "metrics": {
+            "answer_correct": true,
+            "matched_answer": "74 million",
+            "citation_recall": 1.0
+          },
+          "error_cause": "success"
+        },
+        {
+          "id": "q05",
+          "question": "Which independent assurance standard did the company complete?",
+          "expected_slide_ids": [
+            "evaldeck_s006"
+          ],
+          "acceptable_answers": [
+            "SOC 2 Type II",
+            "soc2 type ii"
+          ],
+          "retrieval": {
+            "top_10_slide_ids": [
+              "evaldeck_s006",
+              "evaldeck_s005",
+              "evaldeck_s008",
+              "evaldeck_s004",
+              "evaldeck_s002",
+              "evaldeck_s003",
+              "evaldeck_s009",
+              "evaldeck_s012",
+              "evaldeck_s001",
+              "evaldeck_s010"
+            ],
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "context_slide_ids": [
+            "evaldeck_s006",
+            "evaldeck_s005",
+            "evaldeck_s008",
+            "evaldeck_s004",
+            "evaldeck_s002"
+          ],
+          "answer": "SOC 2 Type II",
+          "cited_slide_ids": [
+            "evaldeck_s006"
+          ],
+          "metrics": {
+            "answer_correct": true,
+            "matched_answer": "SOC 2 Type II",
+            "citation_recall": 1.0
+          },
+          "error_cause": "success"
+        },
+        {
+          "id": "q06",
+          "question": "What share of sales came from Europe, the Middle East, and Africa?",
+          "expected_slide_ids": [
+            "evaldeck_s008"
+          ],
+          "acceptable_answers": [
+            "24 percent",
+            "24%"
+          ],
+          "retrieval": {
+            "top_10_slide_ids": [
+              "evaldeck_s008",
+              "evaldeck_s001",
+              "evaldeck_s005",
+              "evaldeck_s003",
+              "evaldeck_s009",
+              "evaldeck_s002",
+              "evaldeck_s004",
+              "evaldeck_s011",
+              "evaldeck_s012",
+              "evaldeck_s010"
+            ],
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "context_slide_ids": [
+            "evaldeck_s008",
+            "evaldeck_s001",
+            "evaldeck_s005",
+            "evaldeck_s003",
+            "evaldeck_s009"
+          ],
+          "answer": "EMEA",
+          "cited_slide_ids": [
+            "evaldeck_s008"
+          ],
+          "metrics": {
+            "answer_correct": false,
+            "matched_answer": null,
+            "citation_recall": 1.0
+          },
+          "error_cause": "generation_failure_with_expected_evidence"
+        },
+        {
+          "id": "q07",
+          "question": "By how much did per-request infrastructure expense decline?",
+          "expected_slide_ids": [
+            "evaldeck_s009"
+          ],
+          "acceptable_answers": [
+            "31 percent",
+            "31%"
+          ],
+          "retrieval": {
+            "top_10_slide_ids": [
+              "evaldeck_s009",
+              "evaldeck_s003",
+              "evaldeck_s001",
+              "evaldeck_s008",
+              "evaldeck_s011",
+              "evaldeck_s007",
+              "evaldeck_s004",
+              "evaldeck_s002",
+              "evaldeck_s005",
+              "evaldeck_s006"
+            ],
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "context_slide_ids": [
+            "evaldeck_s009",
+            "evaldeck_s003",
+            "evaldeck_s001",
+            "evaldeck_s008",
+            "evaldeck_s011"
+          ],
+          "answer": "31 percent",
+          "cited_slide_ids": [
+            "evaldeck_s009",
+            "evaldeck_s003"
+          ],
+          "metrics": {
+            "answer_correct": true,
+            "matched_answer": "31 percent",
+            "citation_recall": 1.0
+          },
+          "error_cause": "success"
+        },
+        {
+          "id": "q08",
+          "question": "Which metric checks whether relevant evidence appears in the retrieved context?",
+          "expected_slide_ids": [
+            "evaldeck_s010"
+          ],
+          "acceptable_answers": [
+            "Recall@5",
+            "recall at 5"
+          ],
+          "retrieval": {
+            "top_10_slide_ids": [
+              "evaldeck_s010",
+              "evaldeck_s012",
+              "evaldeck_s006",
+              "evaldeck_s002",
+              "evaldeck_s011",
+              "evaldeck_s005",
+              "evaldeck_s004",
+              "evaldeck_s009",
+              "evaldeck_s003",
+              "evaldeck_s008"
+            ],
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "context_slide_ids": [
+            "evaldeck_s010",
+            "evaldeck_s012",
+            "evaldeck_s006",
+            "evaldeck_s002",
+            "evaldeck_s011"
+          ],
+          "answer": "p95",
+          "cited_slide_ids": [
+            "evaldeck_s011"
+          ],
+          "metrics": {
+            "answer_correct": false,
+            "matched_answer": null,
+            "citation_recall": 0.0
+          },
+          "error_cause": "generation_failure_with_expected_evidence"
+        },
+        {
+          "id": "q09",
+          "question": "What tail-latency objective is set for the full serving path?",
+          "expected_slide_ids": [
+            "evaldeck_s011"
+          ],
+          "acceptable_answers": [
+            "below 2 seconds",
+            "under 2 seconds",
+            "2 seconds"
+          ],
+          "retrieval": {
+            "top_10_slide_ids": [
+              "evaldeck_s011",
+              "evaldeck_s009",
+              "evaldeck_s012",
+              "evaldeck_s002",
+              "evaldeck_s003",
+              "evaldeck_s005",
+              "evaldeck_s001",
+              "evaldeck_s007",
+              "evaldeck_s010",
+              "evaldeck_s008"
+            ],
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "context_slide_ids": [
+            "evaldeck_s011",
+            "evaldeck_s009",
+            "evaldeck_s012",
+            "evaldeck_s002",
+            "evaldeck_s003"
+          ],
+          "answer": "p95 end-to-end latency below 2 seconds",
+          "cited_slide_ids": [
+            "evaldeck_s011"
+          ],
+          "metrics": {
+            "answer_correct": true,
+            "matched_answer": "below 2 seconds",
+            "citation_recall": 1.0
+          },
+          "error_cause": "success"
+        },
+        {
+          "id": "q10",
+          "question": "What are the next retrieval and productionization priorities?",
+          "expected_slide_ids": [
+            "evaldeck_s012"
+          ],
+          "acceptable_answers": [
+            "hybrid retrieval",
+            "reranking",
+            "health checks"
+          ],
+          "retrieval": {
+            "top_10_slide_ids": [
+              "evaldeck_s012",
+              "evaldeck_s011",
+              "evaldeck_s009",
+              "evaldeck_s005",
+              "evaldeck_s007",
+              "evaldeck_s010",
+              "evaldeck_s001",
+              "evaldeck_s003",
+              "evaldeck_s002",
+              "evaldeck_s008"
+            ],
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "context_slide_ids": [
+            "evaldeck_s012",
+            "evaldeck_s011",
+            "evaldeck_s009",
+            "evaldeck_s005",
+            "evaldeck_s007"
+          ],
+          "answer": "Q4 Roadmap",
+          "cited_slide_ids": [
+            "evaldeck_s012"
+          ],
+          "metrics": {
+            "answer_correct": false,
+            "matched_answer": null,
+            "citation_recall": 1.0
+          },
+          "error_cause": "generation_failure_with_expected_evidence"
+        }
+      ]
+    },
+    {
+      "generator": "hf-span:google/flan-t5-base",
+      "model": {
+        "requested_name": "google/flan-t5-base",
+        "resolved_name_or_path": "google/flan-t5-base",
+        "revision": "7bcac572ce56db69c1ea7c8af255c5d7c9672fc2",
+        "architecture": "T5ForConditionalGeneration",
+        "parameter_count": 247577856,
+        "transformers_version": "4.57.1"
+      },
+      "prompt_version": "exact_span_v1",
+      "context_condition": "dense_top_1",
+      "context_top_k": 1,
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "mrr": 1.0,
+        "n_queries": 10,
+        "answer_accuracy": 0.5,
+        "citation_recall": 0.9,
+        "runtime_seconds": 5.212
+      },
+      "error_counts": {
+        "generation_failure_with_expected_evidence": 5,
+        "success": 5
+      },
+      "queries": [
+        {
+          "id": "q01",
+          "question": "How quickly did the company's top line expand from a year earlier?",
+          "expected_slide_ids": [
+            "evaldeck_s001"
+          ],
+          "acceptable_answers": [
+            "18 percent",
+            "18%"
+          ],
+          "retrieval": {
+            "top_10_slide_ids": [
+              "evaldeck_s001",
+              "evaldeck_s003",
+              "evaldeck_s002",
+              "evaldeck_s005",
+              "evaldeck_s008",
+              "evaldeck_s007",
+              "evaldeck_s004",
+              "evaldeck_s009",
+              "evaldeck_s011",
+              "evaldeck_s012"
+            ],
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "context_slide_ids": [
+            "evaldeck_s001"
+          ],
+          "answer": "year over year",
+          "cited_slide_ids": [
+            "evaldeck_s001"
+          ],
+          "metrics": {
+            "answer_correct": false,
+            "matched_answer": null,
+            "citation_recall": 1.0
+          },
+          "error_cause": "generation_failure_with_expected_evidence"
+        },
+        {
+          "id": "q02",
+          "question": "What was the quarterly profitability margin?",
+          "expected_slide_ids": [
+            "evaldeck_s002"
+          ],
+          "acceptable_answers": [
+            "18.7 percent",
+            "18.7%"
+          ],
+          "retrieval": {
+            "top_10_slide_ids": [
+              "evaldeck_s002",
+              "evaldeck_s001",
+              "evaldeck_s004",
+              "evaldeck_s003",
+              "evaldeck_s008",
+              "evaldeck_s009",
+              "evaldeck_s006",
+              "evaldeck_s011",
+              "evaldeck_s010",
+              "evaldeck_s005"
+            ],
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "context_slide_ids": [
+            "evaldeck_s002"
+          ],
+          "answer": "18.7 percent",
+          "cited_slide_ids": [
+            "evaldeck_s002"
+          ],
+          "metrics": {
+            "answer_correct": true,
+            "matched_answer": "18.7 percent",
+            "citation_recall": 1.0
+          },
+          "error_cause": "success"
+        },
+        {
+          "id": "q03",
+          "question": "How sticky and expansionary were existing customers?",
+          "expected_slide_ids": [
+            "evaldeck_s003"
+          ],
+          "acceptable_answers": [
+            "112 percent",
+            "112%"
+          ],
+          "retrieval": {
+            "top_10_slide_ids": [
+              "evaldeck_s003",
+              "evaldeck_s008",
+              "evaldeck_s001",
+              "evaldeck_s005",
+              "evaldeck_s007",
+              "evaldeck_s002",
+              "evaldeck_s004",
+              "evaldeck_s009",
+              "evaldeck_s006",
+              "evaldeck_s011"
+            ],
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "context_slide_ids": [
+            "evaldeck_s003"
+          ],
+          "answer": "Insufficient_Context",
+          "cited_slide_ids": [],
+          "metrics": {
+            "answer_correct": false,
+            "matched_answer": null,
+            "citation_recall": 0.0
+          },
+          "error_cause": "generation_failure_with_expected_evidence"
+        },
+        {
+          "id": "q04",
+          "question": "How much liquid money was on hand at the end of the quarter?",
+          "expected_slide_ids": [
+            "evaldeck_s004"
+          ],
+          "acceptable_answers": [
+            "74 million",
+            "74m"
+          ],
+          "retrieval": {
+            "top_10_slide_ids": [
+              "evaldeck_s004",
+              "evaldeck_s001",
+              "evaldeck_s002",
+              "evaldeck_s008",
+              "evaldeck_s003",
+              "evaldeck_s011",
+              "evaldeck_s010",
+              "evaldeck_s009",
+              "evaldeck_s006",
+              "evaldeck_s005"
+            ],
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "context_slide_ids": [
+            "evaldeck_s004"
+          ],
+          "answer": "74 million dollars",
+          "cited_slide_ids": [
+            "evaldeck_s004"
+          ],
+          "metrics": {
+            "answer_correct": true,
+            "matched_answer": "74 million",
+            "citation_recall": 1.0
+          },
+          "error_cause": "success"
+        },
+        {
+          "id": "q05",
+          "question": "Which independent assurance standard did the company complete?",
+          "expected_slide_ids": [
+            "evaldeck_s006"
+          ],
+          "acceptable_answers": [
+            "SOC 2 Type II",
+            "soc2 type ii"
+          ],
+          "retrieval": {
+            "top_10_slide_ids": [
+              "evaldeck_s006",
+              "evaldeck_s005",
+              "evaldeck_s008",
+              "evaldeck_s004",
+              "evaldeck_s002",
+              "evaldeck_s003",
+              "evaldeck_s009",
+              "evaldeck_s012",
+              "evaldeck_s001",
+              "evaldeck_s010"
+            ],
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "context_slide_ids": [
+            "evaldeck_s006"
+          ],
+          "answer": "SOC 2",
+          "cited_slide_ids": [
+            "evaldeck_s006"
+          ],
+          "metrics": {
+            "answer_correct": false,
+            "matched_answer": null,
+            "citation_recall": 1.0
+          },
+          "error_cause": "generation_failure_with_expected_evidence"
+        },
+        {
+          "id": "q06",
+          "question": "What share of sales came from Europe, the Middle East, and Africa?",
+          "expected_slide_ids": [
+            "evaldeck_s008"
+          ],
+          "acceptable_answers": [
+            "24 percent",
+            "24%"
+          ],
+          "retrieval": {
+            "top_10_slide_ids": [
+              "evaldeck_s008",
+              "evaldeck_s001",
+              "evaldeck_s005",
+              "evaldeck_s003",
+              "evaldeck_s009",
+              "evaldeck_s002",
+              "evaldeck_s004",
+              "evaldeck_s011",
+              "evaldeck_s012",
+              "evaldeck_s010"
+            ],
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "context_slide_ids": [
+            "evaldeck_s008"
+          ],
+          "answer": "EMEA",
+          "cited_slide_ids": [
+            "evaldeck_s008"
+          ],
+          "metrics": {
+            "answer_correct": false,
+            "matched_answer": null,
+            "citation_recall": 1.0
+          },
+          "error_cause": "generation_failure_with_expected_evidence"
+        },
+        {
+          "id": "q07",
+          "question": "By how much did per-request infrastructure expense decline?",
+          "expected_slide_ids": [
+            "evaldeck_s009"
+          ],
+          "acceptable_answers": [
+            "31 percent",
+            "31%"
+          ],
+          "retrieval": {
+            "top_10_slide_ids": [
+              "evaldeck_s009",
+              "evaldeck_s003",
+              "evaldeck_s001",
+              "evaldeck_s008",
+              "evaldeck_s011",
+              "evaldeck_s007",
+              "evaldeck_s004",
+              "evaldeck_s002",
+              "evaldeck_s005",
+              "evaldeck_s006"
+            ],
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "context_slide_ids": [
+            "evaldeck_s009"
+          ],
+          "answer": "31 percent",
+          "cited_slide_ids": [
+            "evaldeck_s009"
+          ],
+          "metrics": {
+            "answer_correct": true,
+            "matched_answer": "31 percent",
+            "citation_recall": 1.0
+          },
+          "error_cause": "success"
+        },
+        {
+          "id": "q08",
+          "question": "Which metric checks whether relevant evidence appears in the retrieved context?",
+          "expected_slide_ids": [
+            "evaldeck_s010"
+          ],
+          "acceptable_answers": [
+            "Recall@5",
+            "recall at 5"
+          ],
+          "retrieval": {
+            "top_10_slide_ids": [
+              "evaldeck_s010",
+              "evaldeck_s012",
+              "evaldeck_s006",
+              "evaldeck_s002",
+              "evaldeck_s011",
+              "evaldeck_s005",
+              "evaldeck_s004",
+              "evaldeck_s009",
+              "evaldeck_s003",
+              "evaldeck_s008"
+            ],
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "context_slide_ids": [
+            "evaldeck_s010"
+          ],
+          "answer": "Recall@5",
+          "cited_slide_ids": [
+            "evaldeck_s010"
+          ],
+          "metrics": {
+            "answer_correct": true,
+            "matched_answer": "Recall@5",
+            "citation_recall": 1.0
+          },
+          "error_cause": "success"
+        },
+        {
+          "id": "q09",
+          "question": "What tail-latency objective is set for the full serving path?",
+          "expected_slide_ids": [
+            "evaldeck_s011"
+          ],
+          "acceptable_answers": [
+            "below 2 seconds",
+            "under 2 seconds",
+            "2 seconds"
+          ],
+          "retrieval": {
+            "top_10_slide_ids": [
+              "evaldeck_s011",
+              "evaldeck_s009",
+              "evaldeck_s012",
+              "evaldeck_s002",
+              "evaldeck_s003",
+              "evaldeck_s005",
+              "evaldeck_s001",
+              "evaldeck_s007",
+              "evaldeck_s010",
+              "evaldeck_s008"
+            ],
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "context_slide_ids": [
+            "evaldeck_s011"
+          ],
+          "answer": "p95",
+          "cited_slide_ids": [
+            "evaldeck_s011"
+          ],
+          "metrics": {
+            "answer_correct": false,
+            "matched_answer": null,
+            "citation_recall": 1.0
+          },
+          "error_cause": "generation_failure_with_expected_evidence"
+        },
+        {
+          "id": "q10",
+          "question": "What are the next retrieval and productionization priorities?",
+          "expected_slide_ids": [
+            "evaldeck_s012"
+          ],
+          "acceptable_answers": [
+            "hybrid retrieval",
+            "reranking",
+            "health checks"
+          ],
+          "retrieval": {
+            "top_10_slide_ids": [
+              "evaldeck_s012",
+              "evaldeck_s011",
+              "evaldeck_s009",
+              "evaldeck_s005",
+              "evaldeck_s007",
+              "evaldeck_s010",
+              "evaldeck_s001",
+              "evaldeck_s003",
+              "evaldeck_s002",
+              "evaldeck_s008"
+            ],
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "context_slide_ids": [
+            "evaldeck_s012"
+          ],
+          "answer": "Q4 priorities are hybrid retrieval, reranking, and deployment with health checks.",
+          "cited_slide_ids": [
+            "evaldeck_s012"
+          ],
+          "metrics": {
+            "answer_correct": true,
+            "matched_answer": "hybrid retrieval",
+            "citation_recall": 1.0
+          },
+          "error_cause": "success"
+        }
+      ]
+    },
+    {
+      "generator": "hf-span:google/flan-t5-base",
+      "model": {
+        "requested_name": "google/flan-t5-base",
+        "resolved_name_or_path": "google/flan-t5-base",
+        "revision": "7bcac572ce56db69c1ea7c8af255c5d7c9672fc2",
+        "architecture": "T5ForConditionalGeneration",
+        "parameter_count": 247577856,
+        "transformers_version": "4.57.1"
+      },
+      "prompt_version": "exact_span_v1",
+      "context_condition": "oracle_evidence",
+      "context_top_k": 1,
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "mrr": 1.0,
+        "n_queries": 10,
+        "answer_accuracy": 0.5,
+        "citation_recall": 0.9,
+        "runtime_seconds": 5.982
+      },
+      "error_counts": {
+        "generation_failure_with_expected_evidence": 5,
+        "success": 5
+      },
+      "queries": [
+        {
+          "id": "q01",
+          "question": "How quickly did the company's top line expand from a year earlier?",
+          "expected_slide_ids": [
+            "evaldeck_s001"
+          ],
+          "acceptable_answers": [
+            "18 percent",
+            "18%"
+          ],
+          "retrieval": {
+            "top_10_slide_ids": [
+              "evaldeck_s001",
+              "evaldeck_s003",
+              "evaldeck_s002",
+              "evaldeck_s005",
+              "evaldeck_s008",
+              "evaldeck_s007",
+              "evaldeck_s004",
+              "evaldeck_s009",
+              "evaldeck_s011",
+              "evaldeck_s012"
+            ],
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "context_slide_ids": [
+            "evaldeck_s001"
+          ],
+          "answer": "year over year",
+          "cited_slide_ids": [
+            "evaldeck_s001"
+          ],
+          "metrics": {
+            "answer_correct": false,
+            "matched_answer": null,
+            "citation_recall": 1.0
+          },
+          "error_cause": "generation_failure_with_expected_evidence"
+        },
+        {
+          "id": "q02",
+          "question": "What was the quarterly profitability margin?",
+          "expected_slide_ids": [
+            "evaldeck_s002"
+          ],
+          "acceptable_answers": [
+            "18.7 percent",
+            "18.7%"
+          ],
+          "retrieval": {
+            "top_10_slide_ids": [
+              "evaldeck_s002",
+              "evaldeck_s001",
+              "evaldeck_s004",
+              "evaldeck_s003",
+              "evaldeck_s008",
+              "evaldeck_s009",
+              "evaldeck_s006",
+              "evaldeck_s011",
+              "evaldeck_s010",
+              "evaldeck_s005"
+            ],
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "context_slide_ids": [
+            "evaldeck_s002"
+          ],
+          "answer": "18.7 percent",
+          "cited_slide_ids": [
+            "evaldeck_s002"
+          ],
+          "metrics": {
+            "answer_correct": true,
+            "matched_answer": "18.7 percent",
+            "citation_recall": 1.0
+          },
+          "error_cause": "success"
+        },
+        {
+          "id": "q03",
+          "question": "How sticky and expansionary were existing customers?",
+          "expected_slide_ids": [
+            "evaldeck_s003"
+          ],
+          "acceptable_answers": [
+            "112 percent",
+            "112%"
+          ],
+          "retrieval": {
+            "top_10_slide_ids": [
+              "evaldeck_s003",
+              "evaldeck_s008",
+              "evaldeck_s001",
+              "evaldeck_s005",
+              "evaldeck_s007",
+              "evaldeck_s002",
+              "evaldeck_s004",
+              "evaldeck_s009",
+              "evaldeck_s006",
+              "evaldeck_s011"
+            ],
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "context_slide_ids": [
+            "evaldeck_s003"
+          ],
+          "answer": "Insufficient_Context",
+          "cited_slide_ids": [],
+          "metrics": {
+            "answer_correct": false,
+            "matched_answer": null,
+            "citation_recall": 0.0
+          },
+          "error_cause": "generation_failure_with_expected_evidence"
+        },
+        {
+          "id": "q04",
+          "question": "How much liquid money was on hand at the end of the quarter?",
+          "expected_slide_ids": [
+            "evaldeck_s004"
+          ],
+          "acceptable_answers": [
+            "74 million",
+            "74m"
+          ],
+          "retrieval": {
+            "top_10_slide_ids": [
+              "evaldeck_s004",
+              "evaldeck_s001",
+              "evaldeck_s002",
+              "evaldeck_s008",
+              "evaldeck_s003",
+              "evaldeck_s011",
+              "evaldeck_s010",
+              "evaldeck_s009",
+              "evaldeck_s006",
+              "evaldeck_s005"
+            ],
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "context_slide_ids": [
+            "evaldeck_s004"
+          ],
+          "answer": "74 million dollars",
+          "cited_slide_ids": [
+            "evaldeck_s004"
+          ],
+          "metrics": {
+            "answer_correct": true,
+            "matched_answer": "74 million",
+            "citation_recall": 1.0
+          },
+          "error_cause": "success"
+        },
+        {
+          "id": "q05",
+          "question": "Which independent assurance standard did the company complete?",
+          "expected_slide_ids": [
+            "evaldeck_s006"
+          ],
+          "acceptable_answers": [
+            "SOC 2 Type II",
+            "soc2 type ii"
+          ],
+          "retrieval": {
+            "top_10_slide_ids": [
+              "evaldeck_s006",
+              "evaldeck_s005",
+              "evaldeck_s008",
+              "evaldeck_s004",
+              "evaldeck_s002",
+              "evaldeck_s003",
+              "evaldeck_s009",
+              "evaldeck_s012",
+              "evaldeck_s001",
+              "evaldeck_s010"
+            ],
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "context_slide_ids": [
+            "evaldeck_s006"
+          ],
+          "answer": "SOC 2",
+          "cited_slide_ids": [
+            "evaldeck_s006"
+          ],
+          "metrics": {
+            "answer_correct": false,
+            "matched_answer": null,
+            "citation_recall": 1.0
+          },
+          "error_cause": "generation_failure_with_expected_evidence"
+        },
+        {
+          "id": "q06",
+          "question": "What share of sales came from Europe, the Middle East, and Africa?",
+          "expected_slide_ids": [
+            "evaldeck_s008"
+          ],
+          "acceptable_answers": [
+            "24 percent",
+            "24%"
+          ],
+          "retrieval": {
+            "top_10_slide_ids": [
+              "evaldeck_s008",
+              "evaldeck_s001",
+              "evaldeck_s005",
+              "evaldeck_s003",
+              "evaldeck_s009",
+              "evaldeck_s002",
+              "evaldeck_s004",
+              "evaldeck_s011",
+              "evaldeck_s012",
+              "evaldeck_s010"
+            ],
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "context_slide_ids": [
+            "evaldeck_s008"
+          ],
+          "answer": "EMEA",
+          "cited_slide_ids": [
+            "evaldeck_s008"
+          ],
+          "metrics": {
+            "answer_correct": false,
+            "matched_answer": null,
+            "citation_recall": 1.0
+          },
+          "error_cause": "generation_failure_with_expected_evidence"
+        },
+        {
+          "id": "q07",
+          "question": "By how much did per-request infrastructure expense decline?",
+          "expected_slide_ids": [
+            "evaldeck_s009"
+          ],
+          "acceptable_answers": [
+            "31 percent",
+            "31%"
+          ],
+          "retrieval": {
+            "top_10_slide_ids": [
+              "evaldeck_s009",
+              "evaldeck_s003",
+              "evaldeck_s001",
+              "evaldeck_s008",
+              "evaldeck_s011",
+              "evaldeck_s007",
+              "evaldeck_s004",
+              "evaldeck_s002",
+              "evaldeck_s005",
+              "evaldeck_s006"
+            ],
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "context_slide_ids": [
+            "evaldeck_s009"
+          ],
+          "answer": "31 percent",
+          "cited_slide_ids": [
+            "evaldeck_s009"
+          ],
+          "metrics": {
+            "answer_correct": true,
+            "matched_answer": "31 percent",
+            "citation_recall": 1.0
+          },
+          "error_cause": "success"
+        },
+        {
+          "id": "q08",
+          "question": "Which metric checks whether relevant evidence appears in the retrieved context?",
+          "expected_slide_ids": [
+            "evaldeck_s010"
+          ],
+          "acceptable_answers": [
+            "Recall@5",
+            "recall at 5"
+          ],
+          "retrieval": {
+            "top_10_slide_ids": [
+              "evaldeck_s010",
+              "evaldeck_s012",
+              "evaldeck_s006",
+              "evaldeck_s002",
+              "evaldeck_s011",
+              "evaldeck_s005",
+              "evaldeck_s004",
+              "evaldeck_s009",
+              "evaldeck_s003",
+              "evaldeck_s008"
+            ],
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "context_slide_ids": [
+            "evaldeck_s010"
+          ],
+          "answer": "Recall@5",
+          "cited_slide_ids": [
+            "evaldeck_s010"
+          ],
+          "metrics": {
+            "answer_correct": true,
+            "matched_answer": "Recall@5",
+            "citation_recall": 1.0
+          },
+          "error_cause": "success"
+        },
+        {
+          "id": "q09",
+          "question": "What tail-latency objective is set for the full serving path?",
+          "expected_slide_ids": [
+            "evaldeck_s011"
+          ],
+          "acceptable_answers": [
+            "below 2 seconds",
+            "under 2 seconds",
+            "2 seconds"
+          ],
+          "retrieval": {
+            "top_10_slide_ids": [
+              "evaldeck_s011",
+              "evaldeck_s009",
+              "evaldeck_s012",
+              "evaldeck_s002",
+              "evaldeck_s003",
+              "evaldeck_s005",
+              "evaldeck_s001",
+              "evaldeck_s007",
+              "evaldeck_s010",
+              "evaldeck_s008"
+            ],
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "context_slide_ids": [
+            "evaldeck_s011"
+          ],
+          "answer": "p95",
+          "cited_slide_ids": [
+            "evaldeck_s011"
+          ],
+          "metrics": {
+            "answer_correct": false,
+            "matched_answer": null,
+            "citation_recall": 1.0
+          },
+          "error_cause": "generation_failure_with_expected_evidence"
+        },
+        {
+          "id": "q10",
+          "question": "What are the next retrieval and productionization priorities?",
+          "expected_slide_ids": [
+            "evaldeck_s012"
+          ],
+          "acceptable_answers": [
+            "hybrid retrieval",
+            "reranking",
+            "health checks"
+          ],
+          "retrieval": {
+            "top_10_slide_ids": [
+              "evaldeck_s012",
+              "evaldeck_s011",
+              "evaldeck_s009",
+              "evaldeck_s005",
+              "evaldeck_s007",
+              "evaldeck_s010",
+              "evaldeck_s001",
+              "evaldeck_s003",
+              "evaldeck_s002",
+              "evaldeck_s008"
+            ],
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "context_slide_ids": [
+            "evaldeck_s012"
+          ],
+          "answer": "Q4 priorities are hybrid retrieval, reranking, and deployment with health checks.",
+          "cited_slide_ids": [
+            "evaldeck_s012"
+          ],
+          "metrics": {
+            "answer_correct": true,
+            "matched_answer": "hybrid retrieval",
+            "citation_recall": 1.0
+          },
+          "error_cause": "success"
+        }
+      ]
+    },
+    {
+      "generator": "hf-causal-span:Qwen/Qwen2.5-0.5B-Instruct",
+      "model": {
+        "requested_name": "Qwen/Qwen2.5-0.5B-Instruct",
+        "resolved_name_or_path": "Qwen/Qwen2.5-0.5B-Instruct",
+        "revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+        "architecture": "Qwen2ForCausalLM",
+        "parameter_count": 494032768,
+        "transformers_version": "4.57.1"
+      },
+      "prompt_version": "exact_span_v1",
+      "context_condition": "dense_top_k",
+      "context_top_k": 5,
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "mrr": 1.0,
+        "n_queries": 10,
+        "answer_accuracy": 0.4,
+        "citation_recall": 0.9,
+        "runtime_seconds": 48.083
+      },
+      "error_counts": {
+        "generation_failure_with_expected_evidence": 6,
+        "success": 4
+      },
+      "queries": [
+        {
+          "id": "q01",
+          "question": "How quickly did the company's top line expand from a year earlier?",
+          "expected_slide_ids": [
+            "evaldeck_s001"
+          ],
+          "acceptable_answers": [
+            "18 percent",
+            "18%"
+          ],
+          "retrieval": {
+            "top_10_slide_ids": [
+              "evaldeck_s001",
+              "evaldeck_s003",
+              "evaldeck_s002",
+              "evaldeck_s005",
+              "evaldeck_s008",
+              "evaldeck_s007",
+              "evaldeck_s004",
+              "evaldeck_s009",
+              "evaldeck_s011",
+              "evaldeck_s012"
+            ],
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "context_slide_ids": [
+            "evaldeck_s001",
+            "evaldeck_s003",
+            "evaldeck_s002",
+            "evaldeck_s005",
+            "evaldeck_s008"
+          ],
+          "answer": "Q3 revenue reached 128 million dollars, increasing 18 percent year over year.",
+          "cited_slide_ids": [
+            "evaldeck_s001",
+            "evaldeck_s002"
+          ],
+          "metrics": {
+            "answer_correct": true,
+            "matched_answer": "18 percent",
+            "citation_recall": 1.0
+          },
+          "error_cause": "success"
+        },
+        {
+          "id": "q02",
+          "question": "What was the quarterly profitability margin?",
+          "expected_slide_ids": [
+            "evaldeck_s002"
+          ],
+          "acceptable_answers": [
+            "18.7 percent",
+            "18.7%"
+          ],
+          "retrieval": {
+            "top_10_slide_ids": [
+              "evaldeck_s002",
+              "evaldeck_s001",
+              "evaldeck_s004",
+              "evaldeck_s003",
+              "evaldeck_s008",
+              "evaldeck_s009",
+              "evaldeck_s006",
+              "evaldeck_s011",
+              "evaldeck_s010",
+              "evaldeck_s005"
+            ],
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "context_slide_ids": [
+            "evaldeck_s002",
+            "evaldeck_s001",
+            "evaldeck_s004",
+            "evaldeck_s003",
+            "evaldeck_s008"
+          ],
+          "answer": "Operating Margin",
+          "cited_slide_ids": [
+            "evaldeck_s002"
+          ],
+          "metrics": {
+            "answer_correct": false,
+            "matched_answer": null,
+            "citation_recall": 1.0
+          },
+          "error_cause": "generation_failure_with_expected_evidence"
+        },
+        {
+          "id": "q03",
+          "question": "How sticky and expansionary were existing customers?",
+          "expected_slide_ids": [
+            "evaldeck_s003"
+          ],
+          "acceptable_answers": [
+            "112 percent",
+            "112%"
+          ],
+          "retrieval": {
+            "top_10_slide_ids": [
+              "evaldeck_s003",
+              "evaldeck_s008",
+              "evaldeck_s001",
+              "evaldeck_s005",
+              "evaldeck_s007",
+              "evaldeck_s002",
+              "evaldeck_s004",
+              "evaldeck_s009",
+              "evaldeck_s006",
+              "evaldeck_s011"
+            ],
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "context_slide_ids": [
+            "evaldeck_s003",
+            "evaldeck_s008",
+            "evaldeck_s001",
+            "evaldeck_s005",
+            "evaldeck_s007"
+          ],
+          "answer": "Customer Retention",
+          "cited_slide_ids": [
+            "evaldeck_s003"
+          ],
+          "metrics": {
+            "answer_correct": false,
+            "matched_answer": null,
+            "citation_recall": 1.0
+          },
+          "error_cause": "generation_failure_with_expected_evidence"
+        },
+        {
+          "id": "q04",
+          "question": "How much liquid money was on hand at the end of the quarter?",
+          "expected_slide_ids": [
+            "evaldeck_s004"
+          ],
+          "acceptable_answers": [
+            "74 million",
+            "74m"
+          ],
+          "retrieval": {
+            "top_10_slide_ids": [
+              "evaldeck_s004",
+              "evaldeck_s001",
+              "evaldeck_s002",
+              "evaldeck_s008",
+              "evaldeck_s003",
+              "evaldeck_s011",
+              "evaldeck_s010",
+              "evaldeck_s009",
+              "evaldeck_s006",
+              "evaldeck_s005"
+            ],
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "context_slide_ids": [
+            "evaldeck_s004",
+            "evaldeck_s001",
+            "evaldeck_s002",
+            "evaldeck_s008",
+            "evaldeck_s003"
+          ],
+          "answer": "Cash Position",
+          "cited_slide_ids": [
+            "evaldeck_s004"
+          ],
+          "metrics": {
+            "answer_correct": false,
+            "matched_answer": null,
+            "citation_recall": 1.0
+          },
+          "error_cause": "generation_failure_with_expected_evidence"
+        },
+        {
+          "id": "q05",
+          "question": "Which independent assurance standard did the company complete?",
+          "expected_slide_ids": [
+            "evaldeck_s006"
+          ],
+          "acceptable_answers": [
+            "SOC 2 Type II",
+            "soc2 type ii"
+          ],
+          "retrieval": {
+            "top_10_slide_ids": [
+              "evaldeck_s006",
+              "evaldeck_s005",
+              "evaldeck_s008",
+              "evaldeck_s004",
+              "evaldeck_s002",
+              "evaldeck_s003",
+              "evaldeck_s009",
+              "evaldeck_s012",
+              "evaldeck_s001",
+              "evaldeck_s010"
+            ],
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "context_slide_ids": [
+            "evaldeck_s006",
+            "evaldeck_s005",
+            "evaldeck_s008",
+            "evaldeck_s004",
+            "evaldeck_s002"
+          ],
+          "answer": "Security Compliance",
+          "cited_slide_ids": [
+            "evaldeck_s006"
+          ],
+          "metrics": {
+            "answer_correct": false,
+            "matched_answer": null,
+            "citation_recall": 1.0
+          },
+          "error_cause": "generation_failure_with_expected_evidence"
+        },
+        {
+          "id": "q06",
+          "question": "What share of sales came from Europe, the Middle East, and Africa?",
+          "expected_slide_ids": [
+            "evaldeck_s008"
+          ],
+          "acceptable_answers": [
+            "24 percent",
+            "24%"
+          ],
+          "retrieval": {
+            "top_10_slide_ids": [
+              "evaldeck_s008",
+              "evaldeck_s001",
+              "evaldeck_s005",
+              "evaldeck_s003",
+              "evaldeck_s009",
+              "evaldeck_s002",
+              "evaldeck_s004",
+              "evaldeck_s011",
+              "evaldeck_s012",
+              "evaldeck_s010"
+            ],
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "context_slide_ids": [
+            "evaldeck_s008",
+            "evaldeck_s001",
+            "evaldeck_s005",
+            "evaldeck_s003",
+            "evaldeck_s009"
+          ],
+          "answer": "INSUFFICIENT_CONTEXT",
+          "cited_slide_ids": [],
+          "metrics": {
+            "answer_correct": false,
+            "matched_answer": null,
+            "citation_recall": 0.0
+          },
+          "error_cause": "generation_failure_with_expected_evidence"
+        },
+        {
+          "id": "q07",
+          "question": "By how much did per-request infrastructure expense decline?",
+          "expected_slide_ids": [
+            "evaldeck_s009"
+          ],
+          "acceptable_answers": [
+            "31 percent",
+            "31%"
+          ],
+          "retrieval": {
+            "top_10_slide_ids": [
+              "evaldeck_s009",
+              "evaldeck_s003",
+              "evaldeck_s001",
+              "evaldeck_s008",
+              "evaldeck_s011",
+              "evaldeck_s007",
+              "evaldeck_s004",
+              "evaldeck_s002",
+              "evaldeck_s005",
+              "evaldeck_s006"
+            ],
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "context_slide_ids": [
+            "evaldeck_s009",
+            "evaldeck_s003",
+            "evaldeck_s001",
+            "evaldeck_s008",
+            "evaldeck_s011"
+          ],
+          "answer": "Per-request infrastructure expense declined by 31 percent.",
+          "cited_slide_ids": [
+            "evaldeck_s009"
+          ],
+          "metrics": {
+            "answer_correct": true,
+            "matched_answer": "31 percent",
+            "citation_recall": 1.0
+          },
+          "error_cause": "success"
+        },
+        {
+          "id": "q08",
+          "question": "Which metric checks whether relevant evidence appears in the retrieved context?",
+          "expected_slide_ids": [
+            "evaldeck_s010"
+          ],
+          "acceptable_answers": [
+            "Recall@5",
+            "recall at 5"
+          ],
+          "retrieval": {
+            "top_10_slide_ids": [
+              "evaldeck_s010",
+              "evaldeck_s012",
+              "evaldeck_s006",
+              "evaldeck_s002",
+              "evaldeck_s011",
+              "evaldeck_s005",
+              "evaldeck_s004",
+              "evaldeck_s009",
+              "evaldeck_s003",
+              "evaldeck_s008"
+            ],
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "context_slide_ids": [
+            "evaldeck_s010",
+            "evaldeck_s012",
+            "evaldeck_s006",
+            "evaldeck_s002",
+            "evaldeck_s011"
+          ],
+          "answer": "Recall@5",
+          "cited_slide_ids": [
+            "evaldeck_s010"
+          ],
+          "metrics": {
+            "answer_correct": true,
+            "matched_answer": "Recall@5",
+            "citation_recall": 1.0
+          },
+          "error_cause": "success"
+        },
+        {
+          "id": "q09",
+          "question": "What tail-latency objective is set for the full serving path?",
+          "expected_slide_ids": [
+            "evaldeck_s011"
+          ],
+          "acceptable_answers": [
+            "below 2 seconds",
+            "under 2 seconds",
+            "2 seconds"
+          ],
+          "retrieval": {
+            "top_10_slide_ids": [
+              "evaldeck_s011",
+              "evaldeck_s009",
+              "evaldeck_s012",
+              "evaldeck_s002",
+              "evaldeck_s003",
+              "evaldeck_s005",
+              "evaldeck_s001",
+              "evaldeck_s007",
+              "evaldeck_s010",
+              "evaldeck_s008"
+            ],
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "context_slide_ids": [
+            "evaldeck_s011",
+            "evaldeck_s009",
+            "evaldeck_s012",
+            "evaldeck_s002",
+            "evaldeck_s003"
+          ],
+          "answer": "Serving Latency",
+          "cited_slide_ids": [
+            "evaldeck_s011"
+          ],
+          "metrics": {
+            "answer_correct": false,
+            "matched_answer": null,
+            "citation_recall": 1.0
+          },
+          "error_cause": "generation_failure_with_expected_evidence"
+        },
+        {
+          "id": "q10",
+          "question": "What are the next retrieval and productionization priorities?",
+          "expected_slide_ids": [
+            "evaldeck_s012"
+          ],
+          "acceptable_answers": [
+            "hybrid retrieval",
+            "reranking",
+            "health checks"
+          ],
+          "retrieval": {
+            "top_10_slide_ids": [
+              "evaldeck_s012",
+              "evaldeck_s011",
+              "evaldeck_s009",
+              "evaldeck_s005",
+              "evaldeck_s007",
+              "evaldeck_s010",
+              "evaldeck_s001",
+              "evaldeck_s003",
+              "evaldeck_s002",
+              "evaldeck_s008"
+            ],
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "context_slide_ids": [
+            "evaldeck_s012",
+            "evaldeck_s011",
+            "evaldeck_s009",
+            "evaldeck_s005",
+            "evaldeck_s007"
+          ],
+          "answer": "Reranking",
+          "cited_slide_ids": [
+            "evaldeck_s012"
+          ],
+          "metrics": {
+            "answer_correct": true,
+            "matched_answer": "reranking",
+            "citation_recall": 1.0
+          },
+          "error_cause": "success"
+        }
+      ]
+    },
+    {
+      "generator": "hf-causal-span:Qwen/Qwen2.5-0.5B-Instruct",
+      "model": {
+        "requested_name": "Qwen/Qwen2.5-0.5B-Instruct",
+        "resolved_name_or_path": "Qwen/Qwen2.5-0.5B-Instruct",
+        "revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+        "architecture": "Qwen2ForCausalLM",
+        "parameter_count": 494032768,
+        "transformers_version": "4.57.1"
+      },
+      "prompt_version": "exact_span_v1",
+      "context_condition": "dense_top_1",
+      "context_top_k": 1,
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "mrr": 1.0,
+        "n_queries": 10,
+        "answer_accuracy": 0.4,
+        "citation_recall": 0.9,
+        "runtime_seconds": 14.829
+      },
+      "error_counts": {
+        "generation_failure_with_expected_evidence": 6,
+        "success": 4
+      },
+      "queries": [
+        {
+          "id": "q01",
+          "question": "How quickly did the company's top line expand from a year earlier?",
+          "expected_slide_ids": [
+            "evaldeck_s001"
+          ],
+          "acceptable_answers": [
+            "18 percent",
+            "18%"
+          ],
+          "retrieval": {
+            "top_10_slide_ids": [
+              "evaldeck_s001",
+              "evaldeck_s003",
+              "evaldeck_s002",
+              "evaldeck_s005",
+              "evaldeck_s008",
+              "evaldeck_s007",
+              "evaldeck_s004",
+              "evaldeck_s009",
+              "evaldeck_s011",
+              "evaldeck_s012"
+            ],
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "context_slide_ids": [
+            "evaldeck_s001"
+          ],
+          "answer": "18%",
+          "cited_slide_ids": [],
+          "metrics": {
+            "answer_correct": true,
+            "matched_answer": "18%",
+            "citation_recall": 0.0
+          },
+          "error_cause": "success"
+        },
+        {
+          "id": "q02",
+          "question": "What was the quarterly profitability margin?",
+          "expected_slide_ids": [
+            "evaldeck_s002"
+          ],
+          "acceptable_answers": [
+            "18.7 percent",
+            "18.7%"
+          ],
+          "retrieval": {
+            "top_10_slide_ids": [
+              "evaldeck_s002",
+              "evaldeck_s001",
+              "evaldeck_s004",
+              "evaldeck_s003",
+              "evaldeck_s008",
+              "evaldeck_s009",
+              "evaldeck_s006",
+              "evaldeck_s011",
+              "evaldeck_s010",
+              "evaldeck_s005"
+            ],
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "context_slide_ids": [
+            "evaldeck_s002"
+          ],
+          "answer": "Operating Margin",
+          "cited_slide_ids": [
+            "evaldeck_s002"
+          ],
+          "metrics": {
+            "answer_correct": false,
+            "matched_answer": null,
+            "citation_recall": 1.0
+          },
+          "error_cause": "generation_failure_with_expected_evidence"
+        },
+        {
+          "id": "q03",
+          "question": "How sticky and expansionary were existing customers?",
+          "expected_slide_ids": [
+            "evaldeck_s003"
+          ],
+          "acceptable_answers": [
+            "112 percent",
+            "112%"
+          ],
+          "retrieval": {
+            "top_10_slide_ids": [
+              "evaldeck_s003",
+              "evaldeck_s008",
+              "evaldeck_s001",
+              "evaldeck_s005",
+              "evaldeck_s007",
+              "evaldeck_s002",
+              "evaldeck_s004",
+              "evaldeck_s009",
+              "evaldeck_s006",
+              "evaldeck_s011"
+            ],
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "context_slide_ids": [
+            "evaldeck_s003"
+          ],
+          "answer": "existing customers",
+          "cited_slide_ids": [
+            "evaldeck_s003"
+          ],
+          "metrics": {
+            "answer_correct": false,
+            "matched_answer": null,
+            "citation_recall": 1.0
+          },
+          "error_cause": "generation_failure_with_expected_evidence"
+        },
+        {
+          "id": "q04",
+          "question": "How much liquid money was on hand at the end of the quarter?",
+          "expected_slide_ids": [
+            "evaldeck_s004"
+          ],
+          "acceptable_answers": [
+            "74 million",
+            "74m"
+          ],
+          "retrieval": {
+            "top_10_slide_ids": [
+              "evaldeck_s004",
+              "evaldeck_s001",
+              "evaldeck_s002",
+              "evaldeck_s008",
+              "evaldeck_s003",
+              "evaldeck_s011",
+              "evaldeck_s010",
+              "evaldeck_s009",
+              "evaldeck_s006",
+              "evaldeck_s005"
+            ],
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "context_slide_ids": [
+            "evaldeck_s004"
+          ],
+          "answer": "74 million dollars",
+          "cited_slide_ids": [
+            "evaldeck_s004"
+          ],
+          "metrics": {
+            "answer_correct": true,
+            "matched_answer": "74 million",
+            "citation_recall": 1.0
+          },
+          "error_cause": "success"
+        },
+        {
+          "id": "q05",
+          "question": "Which independent assurance standard did the company complete?",
+          "expected_slide_ids": [
+            "evaldeck_s006"
+          ],
+          "acceptable_answers": [
+            "SOC 2 Type II",
+            "soc2 type ii"
+          ],
+          "retrieval": {
+            "top_10_slide_ids": [
+              "evaldeck_s006",
+              "evaldeck_s005",
+              "evaldeck_s008",
+              "evaldeck_s004",
+              "evaldeck_s002",
+              "evaldeck_s003",
+              "evaldeck_s009",
+              "evaldeck_s012",
+              "evaldeck_s001",
+              "evaldeck_s010"
+            ],
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "context_slide_ids": [
+            "evaldeck_s006"
+          ],
+          "answer": "Security Compliance",
+          "cited_slide_ids": [
+            "evaldeck_s006"
+          ],
+          "metrics": {
+            "answer_correct": false,
+            "matched_answer": null,
+            "citation_recall": 1.0
+          },
+          "error_cause": "generation_failure_with_expected_evidence"
+        },
+        {
+          "id": "q06",
+          "question": "What share of sales came from Europe, the Middle East, and Africa?",
+          "expected_slide_ids": [
+            "evaldeck_s008"
+          ],
+          "acceptable_answers": [
+            "24 percent",
+            "24%"
+          ],
+          "retrieval": {
+            "top_10_slide_ids": [
+              "evaldeck_s008",
+              "evaldeck_s001",
+              "evaldeck_s005",
+              "evaldeck_s003",
+              "evaldeck_s009",
+              "evaldeck_s002",
+              "evaldeck_s004",
+              "evaldeck_s011",
+              "evaldeck_s012",
+              "evaldeck_s010"
+            ],
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "context_slide_ids": [
+            "evaldeck_s008"
+          ],
+          "answer": "Quarterly revenue",
+          "cited_slide_ids": [
+            "evaldeck_s008"
+          ],
+          "metrics": {
+            "answer_correct": false,
+            "matched_answer": null,
+            "citation_recall": 1.0
+          },
+          "error_cause": "generation_failure_with_expected_evidence"
+        },
+        {
+          "id": "q07",
+          "question": "By how much did per-request infrastructure expense decline?",
+          "expected_slide_ids": [
+            "evaldeck_s009"
+          ],
+          "acceptable_answers": [
+            "31 percent",
+            "31%"
+          ],
+          "retrieval": {
+            "top_10_slide_ids": [
+              "evaldeck_s009",
+              "evaldeck_s003",
+              "evaldeck_s001",
+              "evaldeck_s008",
+              "evaldeck_s011",
+              "evaldeck_s007",
+              "evaldeck_s004",
+              "evaldeck_s002",
+              "evaldeck_s005",
+              "evaldeck_s006"
+            ],
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "context_slide_ids": [
+            "evaldeck_s009"
+          ],
+          "answer": "Infrastructure cost per query",
+          "cited_slide_ids": [
+            "evaldeck_s009"
+          ],
+          "metrics": {
+            "answer_correct": false,
+            "matched_answer": null,
+            "citation_recall": 1.0
+          },
+          "error_cause": "generation_failure_with_expected_evidence"
+        },
+        {
+          "id": "q08",
+          "question": "Which metric checks whether relevant evidence appears in the retrieved context?",
+          "expected_slide_ids": [
+            "evaldeck_s010"
+          ],
+          "acceptable_answers": [
+            "Recall@5",
+            "recall at 5"
+          ],
+          "retrieval": {
+            "top_10_slide_ids": [
+              "evaldeck_s010",
+              "evaldeck_s012",
+              "evaldeck_s006",
+              "evaldeck_s002",
+              "evaldeck_s011",
+              "evaldeck_s005",
+              "evaldeck_s004",
+              "evaldeck_s009",
+              "evaldeck_s003",
+              "evaldeck_s008"
+            ],
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "context_slide_ids": [
+            "evaldeck_s010"
+          ],
+          "answer": "Recall@5",
+          "cited_slide_ids": [
+            "evaldeck_s010"
+          ],
+          "metrics": {
+            "answer_correct": true,
+            "matched_answer": "Recall@5",
+            "citation_recall": 1.0
+          },
+          "error_cause": "success"
+        },
+        {
+          "id": "q09",
+          "question": "What tail-latency objective is set for the full serving path?",
+          "expected_slide_ids": [
+            "evaldeck_s011"
+          ],
+          "acceptable_answers": [
+            "below 2 seconds",
+            "under 2 seconds",
+            "2 seconds"
+          ],
+          "retrieval": {
+            "top_10_slide_ids": [
+              "evaldeck_s011",
+              "evaldeck_s009",
+              "evaldeck_s012",
+              "evaldeck_s002",
+              "evaldeck_s003",
+              "evaldeck_s005",
+              "evaldeck_s001",
+              "evaldeck_s007",
+              "evaldeck_s010",
+              "evaldeck_s008"
+            ],
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "context_slide_ids": [
+            "evaldeck_s011"
+          ],
+          "answer": "End-to-end latency",
+          "cited_slide_ids": [
+            "evaldeck_s011"
+          ],
+          "metrics": {
+            "answer_correct": false,
+            "matched_answer": null,
+            "citation_recall": 1.0
+          },
+          "error_cause": "generation_failure_with_expected_evidence"
+        },
+        {
+          "id": "q10",
+          "question": "What are the next retrieval and productionization priorities?",
+          "expected_slide_ids": [
+            "evaldeck_s012"
+          ],
+          "acceptable_answers": [
+            "hybrid retrieval",
+            "reranking",
+            "health checks"
+          ],
+          "retrieval": {
+            "top_10_slide_ids": [
+              "evaldeck_s012",
+              "evaldeck_s011",
+              "evaldeck_s009",
+              "evaldeck_s005",
+              "evaldeck_s007",
+              "evaldeck_s010",
+              "evaldeck_s001",
+              "evaldeck_s003",
+              "evaldeck_s002",
+              "evaldeck_s008"
+            ],
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "context_slide_ids": [
+            "evaldeck_s012"
+          ],
+          "answer": "hybrid retrieval, reranking, and deployment with health checks",
+          "cited_slide_ids": [
+            "evaldeck_s012"
+          ],
+          "metrics": {
+            "answer_correct": true,
+            "matched_answer": "hybrid retrieval",
+            "citation_recall": 1.0
+          },
+          "error_cause": "success"
+        }
+      ]
+    },
+    {
+      "generator": "hf-causal-span:Qwen/Qwen2.5-0.5B-Instruct",
+      "model": {
+        "requested_name": "Qwen/Qwen2.5-0.5B-Instruct",
+        "resolved_name_or_path": "Qwen/Qwen2.5-0.5B-Instruct",
+        "revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+        "architecture": "Qwen2ForCausalLM",
+        "parameter_count": 494032768,
+        "transformers_version": "4.57.1"
+      },
+      "prompt_version": "exact_span_v1",
+      "context_condition": "oracle_evidence",
+      "context_top_k": 1,
+      "metrics": {
+        "recall_at_1": 1.0,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "mrr": 1.0,
+        "n_queries": 10,
+        "answer_accuracy": 0.4,
+        "citation_recall": 0.9,
+        "runtime_seconds": 18.036
+      },
+      "error_counts": {
+        "generation_failure_with_expected_evidence": 6,
+        "success": 4
+      },
+      "queries": [
+        {
+          "id": "q01",
+          "question": "How quickly did the company's top line expand from a year earlier?",
+          "expected_slide_ids": [
+            "evaldeck_s001"
+          ],
+          "acceptable_answers": [
+            "18 percent",
+            "18%"
+          ],
+          "retrieval": {
+            "top_10_slide_ids": [
+              "evaldeck_s001",
+              "evaldeck_s003",
+              "evaldeck_s002",
+              "evaldeck_s005",
+              "evaldeck_s008",
+              "evaldeck_s007",
+              "evaldeck_s004",
+              "evaldeck_s009",
+              "evaldeck_s011",
+              "evaldeck_s012"
+            ],
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "context_slide_ids": [
+            "evaldeck_s001"
+          ],
+          "answer": "18%",
+          "cited_slide_ids": [],
+          "metrics": {
+            "answer_correct": true,
+            "matched_answer": "18%",
+            "citation_recall": 0.0
+          },
+          "error_cause": "success"
+        },
+        {
+          "id": "q02",
+          "question": "What was the quarterly profitability margin?",
+          "expected_slide_ids": [
+            "evaldeck_s002"
+          ],
+          "acceptable_answers": [
+            "18.7 percent",
+            "18.7%"
+          ],
+          "retrieval": {
+            "top_10_slide_ids": [
+              "evaldeck_s002",
+              "evaldeck_s001",
+              "evaldeck_s004",
+              "evaldeck_s003",
+              "evaldeck_s008",
+              "evaldeck_s009",
+              "evaldeck_s006",
+              "evaldeck_s011",
+              "evaldeck_s010",
+              "evaldeck_s005"
+            ],
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "context_slide_ids": [
+            "evaldeck_s002"
+          ],
+          "answer": "Operating Margin",
+          "cited_slide_ids": [
+            "evaldeck_s002"
+          ],
+          "metrics": {
+            "answer_correct": false,
+            "matched_answer": null,
+            "citation_recall": 1.0
+          },
+          "error_cause": "generation_failure_with_expected_evidence"
+        },
+        {
+          "id": "q03",
+          "question": "How sticky and expansionary were existing customers?",
+          "expected_slide_ids": [
+            "evaldeck_s003"
+          ],
+          "acceptable_answers": [
+            "112 percent",
+            "112%"
+          ],
+          "retrieval": {
+            "top_10_slide_ids": [
+              "evaldeck_s003",
+              "evaldeck_s008",
+              "evaldeck_s001",
+              "evaldeck_s005",
+              "evaldeck_s007",
+              "evaldeck_s002",
+              "evaldeck_s004",
+              "evaldeck_s009",
+              "evaldeck_s006",
+              "evaldeck_s011"
+            ],
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "context_slide_ids": [
+            "evaldeck_s003"
+          ],
+          "answer": "existing customers",
+          "cited_slide_ids": [
+            "evaldeck_s003"
+          ],
+          "metrics": {
+            "answer_correct": false,
+            "matched_answer": null,
+            "citation_recall": 1.0
+          },
+          "error_cause": "generation_failure_with_expected_evidence"
+        },
+        {
+          "id": "q04",
+          "question": "How much liquid money was on hand at the end of the quarter?",
+          "expected_slide_ids": [
+            "evaldeck_s004"
+          ],
+          "acceptable_answers": [
+            "74 million",
+            "74m"
+          ],
+          "retrieval": {
+            "top_10_slide_ids": [
+              "evaldeck_s004",
+              "evaldeck_s001",
+              "evaldeck_s002",
+              "evaldeck_s008",
+              "evaldeck_s003",
+              "evaldeck_s011",
+              "evaldeck_s010",
+              "evaldeck_s009",
+              "evaldeck_s006",
+              "evaldeck_s005"
+            ],
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "context_slide_ids": [
+            "evaldeck_s004"
+          ],
+          "answer": "74 million dollars",
+          "cited_slide_ids": [
+            "evaldeck_s004"
+          ],
+          "metrics": {
+            "answer_correct": true,
+            "matched_answer": "74 million",
+            "citation_recall": 1.0
+          },
+          "error_cause": "success"
+        },
+        {
+          "id": "q05",
+          "question": "Which independent assurance standard did the company complete?",
+          "expected_slide_ids": [
+            "evaldeck_s006"
+          ],
+          "acceptable_answers": [
+            "SOC 2 Type II",
+            "soc2 type ii"
+          ],
+          "retrieval": {
+            "top_10_slide_ids": [
+              "evaldeck_s006",
+              "evaldeck_s005",
+              "evaldeck_s008",
+              "evaldeck_s004",
+              "evaldeck_s002",
+              "evaldeck_s003",
+              "evaldeck_s009",
+              "evaldeck_s012",
+              "evaldeck_s001",
+              "evaldeck_s010"
+            ],
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "context_slide_ids": [
+            "evaldeck_s006"
+          ],
+          "answer": "Security Compliance",
+          "cited_slide_ids": [
+            "evaldeck_s006"
+          ],
+          "metrics": {
+            "answer_correct": false,
+            "matched_answer": null,
+            "citation_recall": 1.0
+          },
+          "error_cause": "generation_failure_with_expected_evidence"
+        },
+        {
+          "id": "q06",
+          "question": "What share of sales came from Europe, the Middle East, and Africa?",
+          "expected_slide_ids": [
+            "evaldeck_s008"
+          ],
+          "acceptable_answers": [
+            "24 percent",
+            "24%"
+          ],
+          "retrieval": {
+            "top_10_slide_ids": [
+              "evaldeck_s008",
+              "evaldeck_s001",
+              "evaldeck_s005",
+              "evaldeck_s003",
+              "evaldeck_s009",
+              "evaldeck_s002",
+              "evaldeck_s004",
+              "evaldeck_s011",
+              "evaldeck_s012",
+              "evaldeck_s010"
+            ],
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "context_slide_ids": [
+            "evaldeck_s008"
+          ],
+          "answer": "Quarterly revenue",
+          "cited_slide_ids": [
+            "evaldeck_s008"
+          ],
+          "metrics": {
+            "answer_correct": false,
+            "matched_answer": null,
+            "citation_recall": 1.0
+          },
+          "error_cause": "generation_failure_with_expected_evidence"
+        },
+        {
+          "id": "q07",
+          "question": "By how much did per-request infrastructure expense decline?",
+          "expected_slide_ids": [
+            "evaldeck_s009"
+          ],
+          "acceptable_answers": [
+            "31 percent",
+            "31%"
+          ],
+          "retrieval": {
+            "top_10_slide_ids": [
+              "evaldeck_s009",
+              "evaldeck_s003",
+              "evaldeck_s001",
+              "evaldeck_s008",
+              "evaldeck_s011",
+              "evaldeck_s007",
+              "evaldeck_s004",
+              "evaldeck_s002",
+              "evaldeck_s005",
+              "evaldeck_s006"
+            ],
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "context_slide_ids": [
+            "evaldeck_s009"
+          ],
+          "answer": "Infrastructure cost per query",
+          "cited_slide_ids": [
+            "evaldeck_s009"
+          ],
+          "metrics": {
+            "answer_correct": false,
+            "matched_answer": null,
+            "citation_recall": 1.0
+          },
+          "error_cause": "generation_failure_with_expected_evidence"
+        },
+        {
+          "id": "q08",
+          "question": "Which metric checks whether relevant evidence appears in the retrieved context?",
+          "expected_slide_ids": [
+            "evaldeck_s010"
+          ],
+          "acceptable_answers": [
+            "Recall@5",
+            "recall at 5"
+          ],
+          "retrieval": {
+            "top_10_slide_ids": [
+              "evaldeck_s010",
+              "evaldeck_s012",
+              "evaldeck_s006",
+              "evaldeck_s002",
+              "evaldeck_s011",
+              "evaldeck_s005",
+              "evaldeck_s004",
+              "evaldeck_s009",
+              "evaldeck_s003",
+              "evaldeck_s008"
+            ],
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "context_slide_ids": [
+            "evaldeck_s010"
+          ],
+          "answer": "Recall@5",
+          "cited_slide_ids": [
+            "evaldeck_s010"
+          ],
+          "metrics": {
+            "answer_correct": true,
+            "matched_answer": "Recall@5",
+            "citation_recall": 1.0
+          },
+          "error_cause": "success"
+        },
+        {
+          "id": "q09",
+          "question": "What tail-latency objective is set for the full serving path?",
+          "expected_slide_ids": [
+            "evaldeck_s011"
+          ],
+          "acceptable_answers": [
+            "below 2 seconds",
+            "under 2 seconds",
+            "2 seconds"
+          ],
+          "retrieval": {
+            "top_10_slide_ids": [
+              "evaldeck_s011",
+              "evaldeck_s009",
+              "evaldeck_s012",
+              "evaldeck_s002",
+              "evaldeck_s003",
+              "evaldeck_s005",
+              "evaldeck_s001",
+              "evaldeck_s007",
+              "evaldeck_s010",
+              "evaldeck_s008"
+            ],
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "context_slide_ids": [
+            "evaldeck_s011"
+          ],
+          "answer": "End-to-end latency",
+          "cited_slide_ids": [
+            "evaldeck_s011"
+          ],
+          "metrics": {
+            "answer_correct": false,
+            "matched_answer": null,
+            "citation_recall": 1.0
+          },
+          "error_cause": "generation_failure_with_expected_evidence"
+        },
+        {
+          "id": "q10",
+          "question": "What are the next retrieval and productionization priorities?",
+          "expected_slide_ids": [
+            "evaldeck_s012"
+          ],
+          "acceptable_answers": [
+            "hybrid retrieval",
+            "reranking",
+            "health checks"
+          ],
+          "retrieval": {
+            "top_10_slide_ids": [
+              "evaldeck_s012",
+              "evaldeck_s011",
+              "evaldeck_s009",
+              "evaldeck_s005",
+              "evaldeck_s007",
+              "evaldeck_s010",
+              "evaldeck_s001",
+              "evaldeck_s003",
+              "evaldeck_s002",
+              "evaldeck_s008"
+            ],
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "reciprocal_rank": 1.0
+          },
+          "context_slide_ids": [
+            "evaldeck_s012"
+          ],
+          "answer": "hybrid retrieval, reranking, and deployment with health checks",
+          "cited_slide_ids": [
+            "evaldeck_s012"
+          ],
+          "metrics": {
+            "answer_correct": true,
+            "matched_answer": "hybrid retrieval",
+            "citation_recall": 1.0
+          },
+          "error_cause": "success"
+        }
+      ]
+    }
+  ]
+}

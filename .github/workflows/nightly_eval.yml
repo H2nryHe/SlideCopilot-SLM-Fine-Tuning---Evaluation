@@ -3,7 +3,7 @@ name: Tests And Nightly Eval
 on:
   pull_request:
   push:
-    branches: [main, milestone-1-real-rag-eval]
+    branches: [main, milestone-1-real-rag-eval, milestone-1-5-generation-upgrade]
   schedule:
     - cron: "0 8 * * *"
   workflow_dispatch:
@@ -72,7 +72,7 @@ jobs:
   real-rag:
     if: github.event_name == 'pull_request' || github.event_name == 'push' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 40
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -105,3 +105,24 @@ jobs:
         with:
           name: milestone1-real-rag-benchmark
           path: reports/eval/milestone1_rag.json
+
+      - name: Run Milestone 1.5 generation-only benchmark
+        run: |
+          pptcopilot eval generation \
+            --generator hf:google/flan-t5-small \
+            --generator hf:google/flan-t5-base \
+            --generator hf-qa:deepset/roberta-base-squad2 \
+            -o reports/eval/milestone1_5_generation.json
+
+      - name: Upload Milestone 1.5 benchmark
+        id: upload-milestone1-5
+        uses: actions/upload-artifact@v4
+        with:
+          name: milestone1-5-generation-benchmark
+          path: |
+            reports/eval/milestone1_5_generation.json
+            reports/eval/milestone1_5_generation.json.sha256
+
+      - name: Record Milestone 1.5 artifact digest
+        run: |
+          echo "Milestone 1.5 artifact digest: ${{ steps.upload-milestone1-5.outputs.artifact-digest }}" >> "$GITHUB_STEP_SUMMARY"
