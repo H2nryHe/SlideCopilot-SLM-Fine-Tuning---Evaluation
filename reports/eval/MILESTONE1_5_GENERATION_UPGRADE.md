@@ -137,7 +137,7 @@ requires better semantic interpretation or a reranker trained for the requested 
 
 ## CI and artifact integrity
 
-The real-RAG workflow now:
+The dedicated `Milestone 1.5 Manual Generation Upgrade` workflow now:
 
 1. runs deterministic regression tests;
 2. runs the original Dense/FAISS integration and Milestone 1 benchmark;
@@ -149,6 +149,9 @@ The real-RAG workflow now:
 The workflow timeout is 40 minutes. The selected QA model is smaller than
 FLAN-T5-base and Qwen2.5-0.5B, and local generation after model load completed in
 3.19 seconds for top-5 plus less than one second each for top-1 and oracle.
+
+The workflow is manual-only. It does not add a schedule or consume runner time until
+explicitly dispatched for a selected branch.
 
 ## Next step
 

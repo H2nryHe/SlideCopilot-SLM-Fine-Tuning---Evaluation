@@ -1,0 +1,61 @@
+name: Milestone 1.5 Manual Generation Upgrade
+
+on:
+  workflow_dispatch:
+
+jobs:
+  generation-upgrade:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - name: Checkout selected branch
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Cache Hugging Face models
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: milestone1-5-hf-rag-v1
+          restore-keys: |
+            milestone1-hf-rag-v1
+            hf-rag-v1
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e ".[dev,rag]"
+
+      - name: Run non-RAG regression tests
+        run: python -m pytest -q -m "not rag"
+
+      - name: Run real Dense integration test
+        run: python -m pytest -q -m rag
+
+      - name: Run generation-only benchmark
+        run: |
+          pptcopilot eval generation \
+            --generator hf:google/flan-t5-small \
+            --generator hf:google/flan-t5-base \
+            --generator hf-qa:deepset/roberta-base-squad2 \
+            -o reports/eval/milestone1_5_generation.json
+
+      - name: Upload benchmark artifact
+        if: always()
+        id: upload-milestone1-5
+        uses: actions/upload-artifact@v4
+        with:
+          name: milestone1-5-generation-benchmark
+          path: |
+            reports/eval/milestone1_5_generation.json
+            reports/eval/milestone1_5_generation.json.sha256
+          if-no-files-found: error
+
+      - name: Record artifact digest
+        if: steps.upload-milestone1-5.outcome == 'success'
+        run: |
+          echo "Milestone 1.5 artifact digest: ${{ steps.upload-milestone1-5.outputs.artifact-digest }}" >> "$GITHUB_STEP_SUMMARY"
