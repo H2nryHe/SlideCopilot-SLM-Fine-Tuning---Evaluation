@@ -1,11 +1,11 @@
-"""Query retrieval index and return top-k chunks."""
+"""Query a retrieval index and return top-k slide chunks."""
 
 from __future__ import annotations
 
 import json
 from pathlib import Path
 
-from pptcopilot.retrieval.embed import embed_text
+from pptcopilot.retrieval.embed import embed_dense_text, embed_text
 from pptcopilot.retrieval.index_faiss import CHUNKS_FILE, EMBEDDINGS_FILE, FAISS_FILE, METADATA_FILE
 
 
@@ -29,26 +29,42 @@ def _read_jsonl(path: Path) -> list[dict[str, object]]:
 def retrieve_top_k(index_dir: str | Path, question: str, *, top_k: int) -> dict[str, object]:
     if top_k <= 0:
         raise ValueError("top_k must be positive")
+
     root = Path(index_dir)
     metadata = _read_json(root / METADATA_FILE)
     chunks = _read_jsonl(root / CHUNKS_FILE)
     dim = int(metadata["embedding_dim"])
-    qvec = embed_text(question, dim=dim)
+    retriever = str(metadata.get("retriever", "hash"))
     backend = str(metadata["backend"])
+
+    if retriever == "dense":
+        model_name = str(metadata.get("embedding_model") or "")
+        if not model_name:
+            raise RuntimeError("Dense index metadata is missing embedding_model")
+        qvec = embed_dense_text(question, model_name=model_name)
+    else:
+        qvec = embed_text(question, dim=dim)
 
     scored: list[tuple[int, float]] = []
     if backend == "faiss" and (root / FAISS_FILE).exists():
-        import faiss  # type: ignore
-        import numpy as np  # type: ignore
+        try:
+            import faiss  # type: ignore
+            import numpy as np  # type: ignore
+        except ImportError as exc:
+            raise RuntimeError(
+                "FAISS index exists but faiss/numpy are not installed. "
+                "Install with: python -m pip install -e '.[rag]'"
+            ) from exc
 
         index = faiss.read_index(str(root / FAISS_FILE))
-        qarr = np.array([qvec], dtype="float32")
+        qarr = np.asarray([qvec], dtype="float32")
         scores, indices = index.search(qarr, min(top_k, len(chunks)))
-        for rank, (i, score) in enumerate(zip(indices[0], scores[0]), start=1):
-            if i < 0:
-                continue
-            scored.append((int(i), float(score)))
+        for i, score in zip(indices[0], scores[0]):
+            if i >= 0:
+                scored.append((int(i), float(score)))
     else:
+        if retriever == "dense":
+            raise RuntimeError("Dense retrieval requires a persisted FAISS index")
         embeddings_payload = _read_json(root / EMBEDDINGS_FILE)
         embeddings = embeddings_payload["embeddings"]
         pairs = []
@@ -73,4 +89,4 @@ def retrieve_top_k(index_dir: str | Path, question: str, *, top_k: int) -> dict[
                 "title": chunk.get("title", ""),
             }
         )
-    return {"backend": backend, "hits": results}
+    return {"retriever": retriever, "backend": backend, "hits": results}
