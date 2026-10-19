@@ -24,15 +24,19 @@ def extractive_answer(question: str, hits: list[dict[str, object]]) -> str:
 
 
 @lru_cache(maxsize=2)
-def _load_text2text_pipeline(model_name: str):
+def _load_seq2seq_model(model_name: str):
     try:
-        from transformers import pipeline  # type: ignore
+        from transformers import AutoModelForSeq2SeqLM, AutoTokenizer  # type: ignore
     except ImportError as exc:
         raise RuntimeError(
             "Real generation requires transformers/torch. "
             "Install with: python -m pip install -e '.[rag]'"
         ) from exc
-    return pipeline("text2text-generation", model=model_name, tokenizer=model_name, device=-1)
+
+    tokenizer = AutoTokenizer.from_pretrained(model_name)
+    model = AutoModelForSeq2SeqLM.from_pretrained(model_name)
+    model.eval()
+    return tokenizer, model
 
 
 def hf_answer(
@@ -53,13 +57,20 @@ def hf_answer(
         f"Question: {question}\n\n"
         f"Context:\n{_context_block(hits)}"
     )
-    generator = _load_text2text_pipeline(model_name)
-    result = generator(
+    tokenizer, model = _load_seq2seq_model(model_name)
+    encoded = tokenizer(
         prompt,
+        return_tensors="pt",
+        truncation=True,
+        max_length=512,
+    )
+    output_ids = model.generate(
+        **encoded,
         max_new_tokens=max_new_tokens,
         do_sample=False,
+        num_beams=1,
     )
-    return str(result[0]["generated_text"]).strip()
+    return str(tokenizer.decode(output_ids[0], skip_special_tokens=True)).strip()
 
 
 def generate_answer(
