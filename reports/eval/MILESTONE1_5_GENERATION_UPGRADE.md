@@ -39,8 +39,17 @@ slide IDs only after retrieval metrics have been recorded.
 
 Artifact: `reports/eval/milestone1_5_generation.json`
 
-Artifact file SHA-256:
-`81922928e8caba311f48dbb90dfb2dd0aaaf1d4a30af582a3ab8f9b9f9c42413`
+Canonical CI artifact file SHA-256:
+`ac34615684bcfcf70b319a9ff7a16cefa92e303f4f1809741e825f24dfddf38c`
+
+GitHub Actions evidence:
+
+- run: [`39330118627`](https://github.com/H2nryHe/SlideCopilot-SLM-Fine-Tuning---Evaluation/actions/runs/39330118627)
+- tested commit: `a88e4295b80f3b3ca846d5c59d5ce98958c6b2fa`
+- conclusion: success
+- artifact: `milestone1-5-generation-benchmark`
+- artifact id: `12224326636`
+- GitHub artifact digest: `sha256:eb12ca6fbe5874763b8686e78ae644035fc6ed76c6037d0771dbaeaa390ed91e`
 
 | Generator | Parameters | Context | Recall@1 | MRR | Answer Accuracy | Citation Recall |
 | --- | ---: | --- | ---: | ---: | ---: | ---: |
@@ -147,8 +156,10 @@ The dedicated `Milestone 1.5 Manual Generation Upgrade` workflow now:
    artifact digest in the workflow summary.
 
 The workflow timeout is 40 minutes. The selected QA model is smaller than
-FLAN-T5-base and Qwen2.5-0.5B, and local generation after model load completed in
-3.19 seconds for top-5 plus less than one second each for top-1 and oracle.
+FLAN-T5-base and Qwen2.5-0.5B. On the Linux runner, generation after model load
+completed in 5.73 seconds for top-5 plus less than one second each for top-1 and
+oracle. The full workflow, including dependency installation and downloads, completed
+successfully in under three minutes.
 
 The workflow is manual-only. It does not add a schedule or consume runner time until
 explicitly dispatched for a selected branch.

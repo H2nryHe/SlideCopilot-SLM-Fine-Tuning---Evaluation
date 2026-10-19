@@ -1,6 +1,6 @@
 {
   "benchmark": "milestone1_5_generation_upgrade",
-  "generated_at_utc": "2026-10-19T21:41:19.715330+00:00",
+  "generated_at_utc": "2026-10-19T21:49:04.680671+00:00",
   "protocol": {
     "frozen": true,
     "corpus": {
@@ -23,12 +23,12 @@
     }
   },
   "runtime": {
-    "python": "3.10.9",
-    "platform": "macOS-26.5.1-x86_64-i386-64bit"
+    "python": "3.11.17",
+    "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39"
   },
   "index": {
-    "input_jsonl": "/Users/linruihe/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/repo/data/eval/milestone1_corpus.jsonl",
-    "index_dir": "/Users/linruihe/Documents/Codex/2026-10-19/referenced-chatgpt-conversation-this-is-an/repo/reports/eval/_generation_index/dense",
+    "input_jsonl": "/home/runner/work/SlideCopilot-SLM-Fine-Tuning---Evaluation/SlideCopilot-SLM-Fine-Tuning---Evaluation/data/eval/milestone1_corpus.jsonl",
+    "index_dir": "/home/runner/work/SlideCopilot-SLM-Fine-Tuning---Evaluation/SlideCopilot-SLM-Fine-Tuning---Evaluation/reports/eval/_generation_index/dense",
     "retriever": "dense",
     "backend": "faiss",
     "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
@@ -37,7 +37,7 @@
     "chunk_size_tokens": 40,
     "chunk_overlap_tokens": 8,
     "embedding_dim": 384,
-    "created_at_utc": "2026-10-19T21:40:45.530921+00:00"
+    "created_at_utc": "2026-10-19T21:48:25.142290+00:00"
   },
   "retrieval_metrics": {
     "recall_at_1": 1.0,
@@ -52,10 +52,10 @@
       "model": {
         "requested_name": "google/flan-t5-small",
         "resolved_name_or_path": "google/flan-t5-small",
-        "revision": "0fc9ddf78a1e988dac52e2dac162b0ede4fd74ab",
+        "revision": null,
         "architecture": "T5ForConditionalGeneration",
         "parameter_count": 76961152,
-        "transformers_version": "4.57.1"
+        "transformers_version": "5.20.2"
       },
       "prompt_version": "legacy_grounded_v1",
       "context_condition": "dense_top_k",
@@ -68,7 +68,7 @@
         "n_queries": 10,
         "answer_accuracy": 0.5,
         "citation_recall": 0.5,
-        "runtime_seconds": 4.402
+        "runtime_seconds": 4.104
       },
       "error_counts": {
         "generation_failure_with_expected_evidence": 5,
@@ -537,10 +537,10 @@
       "model": {
         "requested_name": "google/flan-t5-small",
         "resolved_name_or_path": "google/flan-t5-small",
-        "revision": "0fc9ddf78a1e988dac52e2dac162b0ede4fd74ab",
+        "revision": null,
         "architecture": "T5ForConditionalGeneration",
         "parameter_count": 76961152,
-        "transformers_version": "4.57.1"
+        "transformers_version": "5.20.2"
       },
       "prompt_version": "legacy_grounded_v1",
       "context_condition": "dense_top_1",
@@ -553,7 +553,7 @@
         "n_queries": 10,
         "answer_accuracy": 0.7,
         "citation_recall": 0.9,
-        "runtime_seconds": 1.345
+        "runtime_seconds": 1.623
       },
       "error_counts": {
         "generation_failure_with_expected_evidence": 3,
@@ -987,10 +987,10 @@
       "model": {
         "requested_name": "google/flan-t5-small",
         "resolved_name_or_path": "google/flan-t5-small",
-        "revision": "0fc9ddf78a1e988dac52e2dac162b0ede4fd74ab",
+        "revision": null,
         "architecture": "T5ForConditionalGeneration",
         "parameter_count": 76961152,
-        "transformers_version": "4.57.1"
+        "transformers_version": "5.20.2"
       },
       "prompt_version": "legacy_grounded_v1",
       "context_condition": "oracle_evidence",
@@ -1003,7 +1003,7 @@
         "n_queries": 10,
         "answer_accuracy": 0.7,
         "citation_recall": 0.9,
-        "runtime_seconds": 1.528
+        "runtime_seconds": 1.624
       },
       "error_counts": {
         "generation_failure_with_expected_evidence": 3,
@@ -1437,10 +1437,10 @@
       "model": {
         "requested_name": "google/flan-t5-base",
         "resolved_name_or_path": "google/flan-t5-base",
-        "revision": "7bcac572ce56db69c1ea7c8af255c5d7c9672fc2",
+        "revision": null,
         "architecture": "T5ForConditionalGeneration",
         "parameter_count": 247577856,
-        "transformers_version": "4.57.1"
+        "transformers_version": "5.20.2"
       },
       "prompt_version": "legacy_grounded_v1",
       "context_condition": "dense_top_k",
@@ -1453,7 +1453,7 @@
         "n_queries": 10,
         "answer_accuracy": 0.5,
         "citation_recall": 0.8,
-        "runtime_seconds": 10.276
+        "runtime_seconds": 16.161
       },
       "error_counts": {
         "generation_failure_with_expected_evidence": 5,
@@ -1934,10 +1934,10 @@
       "model": {
         "requested_name": "google/flan-t5-base",
         "resolved_name_or_path": "google/flan-t5-base",
-        "revision": "7bcac572ce56db69c1ea7c8af255c5d7c9672fc2",
+        "revision": null,
         "architecture": "T5ForConditionalGeneration",
         "parameter_count": 247577856,
-        "transformers_version": "4.57.1"
+        "transformers_version": "5.20.2"
       },
       "prompt_version": "legacy_grounded_v1",
       "context_condition": "dense_top_1",
@@ -1950,7 +1950,7 @@
         "n_queries": 10,
         "answer_accuracy": 0.7,
         "citation_recall": 0.9,
-        "runtime_seconds": 4.382
+        "runtime_seconds": 4.321
       },
       "error_counts": {
         "generation_failure_with_expected_evidence": 3,
@@ -2384,10 +2384,10 @@
       "model": {
         "requested_name": "google/flan-t5-base",
         "resolved_name_or_path": "google/flan-t5-base",
-        "revision": "7bcac572ce56db69c1ea7c8af255c5d7c9672fc2",
+        "revision": null,
         "architecture": "T5ForConditionalGeneration",
         "parameter_count": 247577856,
-        "transformers_version": "4.57.1"
+        "transformers_version": "5.20.2"
       },
       "prompt_version": "legacy_grounded_v1",
       "context_condition": "oracle_evidence",
@@ -2400,7 +2400,7 @@
         "n_queries": 10,
         "answer_accuracy": 0.7,
         "citation_recall": 0.9,
-        "runtime_seconds": 6.274
+        "runtime_seconds": 4.358
       },
       "error_counts": {
         "generation_failure_with_expected_evidence": 3,
@@ -2834,10 +2834,10 @@
       "model": {
         "requested_name": "deepset/roberta-base-squad2",
         "resolved_name_or_path": "deepset/roberta-base-squad2",
-        "revision": "adc3b06f79f797d1c575d5479d6f5efe54a9e3b4",
+        "revision": null,
         "architecture": "RobertaForQuestionAnswering",
         "parameter_count": 124056578,
-        "transformers_version": "4.57.1"
+        "transformers_version": "5.20.2"
       },
       "prompt_version": "extractive_qa_v1",
       "context_condition": "dense_top_k",
@@ -2850,7 +2850,7 @@
         "n_queries": 10,
         "answer_accuracy": 0.8,
         "citation_recall": 0.9,
-        "runtime_seconds": 3.19
+        "runtime_seconds": 5.733
       },
       "error_counts": {
         "generation_failure_with_expected_evidence": 2,
@@ -3331,10 +3331,10 @@
       "model": {
         "requested_name": "deepset/roberta-base-squad2",
         "resolved_name_or_path": "deepset/roberta-base-squad2",
-        "revision": "adc3b06f79f797d1c575d5479d6f5efe54a9e3b4",
+        "revision": null,
         "architecture": "RobertaForQuestionAnswering",
         "parameter_count": 124056578,
-        "transformers_version": "4.57.1"
+        "transformers_version": "5.20.2"
       },
       "prompt_version": "extractive_qa_v1",
       "context_condition": "dense_top_1",
@@ -3347,7 +3347,7 @@
         "n_queries": 10,
         "answer_accuracy": 0.9,
         "citation_recall": 1.0,
-        "runtime_seconds": 0.987
+        "runtime_seconds": 0.749
       },
       "error_counts": {
         "generation_failure_with_expected_evidence": 1,
@@ -3783,10 +3783,10 @@
       "model": {
         "requested_name": "deepset/roberta-base-squad2",
         "resolved_name_or_path": "deepset/roberta-base-squad2",
-        "revision": "adc3b06f79f797d1c575d5479d6f5efe54a9e3b4",
+        "revision": null,
         "architecture": "RobertaForQuestionAnswering",
         "parameter_count": 124056578,
-        "transformers_version": "4.57.1"
+        "transformers_version": "5.20.2"
       },
       "prompt_version": "extractive_qa_v1",
       "context_condition": "oracle_evidence",
@@ -3799,7 +3799,7 @@
         "n_queries": 10,
         "answer_accuracy": 0.9,
         "citation_recall": 1.0,
-        "runtime_seconds": 0.912
+        "runtime_seconds": 0.752
       },
       "error_counts": {
         "generation_failure_with_expected_evidence": 1,

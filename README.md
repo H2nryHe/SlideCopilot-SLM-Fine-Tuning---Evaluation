@@ -240,7 +240,8 @@ Each model receives the same precomputed retrieval results in three conditions:
 - Dense top-1: only the highest-ranked Dense result;
 - oracle evidence: chunks selected directly from the held-out expected slide IDs.
 
-Measured results from the final local run:
+Measured results confirmed by Linux GitHub Actions run
+[`39330118627`](https://github.com/H2nryHe/SlideCopilot-SLM-Fine-Tuning---Evaluation/actions/runs/39330118627):
 
 | Generator | Context | Dense Recall@1 | Answer Accuracy | Citation Recall |
 | --- | --- | ---: | ---: | ---: |
