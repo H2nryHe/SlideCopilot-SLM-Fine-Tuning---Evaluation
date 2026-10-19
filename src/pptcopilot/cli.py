@@ -14,6 +14,7 @@ from pptcopilot.bench.cost import run_cost_estimate, write_bench_summary_markdow
 from pptcopilot.bench.latency import run_latency_benchmark
 from pptcopilot.config import get_paths, get_retrieval_defaults
 from pptcopilot.eval.harness import run_eval_suite
+from pptcopilot.eval.rag_benchmark import run_rag_benchmark
 from pptcopilot.eval.report import compare_reports, write_report_json
 from pptcopilot.io.ingest_pptx import ingest_pptx, validate_records, write_jsonl
 from pptcopilot.qa.answer import answer_question, write_answer
@@ -83,7 +84,18 @@ def build_parser() -> argparse.ArgumentParser:
         "--embedding-dim",
         type=int,
         default=retrieval_defaults.embedding_dim,
-        help=f"Embedding dimension (default: {retrieval_defaults.embedding_dim}).",
+        help=f"Hash embedding dimension (default: {retrieval_defaults.embedding_dim}).",
+    )
+    index_parser.add_argument(
+        "--retriever",
+        choices=["hash", "dense"],
+        default="hash",
+        help="Retrieval strategy. Dense uses SentenceTransformer + FAISS.",
+    )
+    index_parser.add_argument(
+        "--embedding-model",
+        default=None,
+        help="SentenceTransformer model for --retriever dense.",
     )
     index_parser.set_defaults(func=_run_index)
 
@@ -100,6 +112,11 @@ def build_parser() -> argparse.ArgumentParser:
         "--debug",
         action="store_true",
         help="Include retrieved chunks in output JSON for debugging.",
+    )
+    qa_parser.add_argument(
+        "--generator",
+        default="extractive",
+        help="Answer generator: extractive or hf:<model_name>.",
     )
     qa_parser.add_argument("-o", "--output", required=True, help="Output answer JSON path")
     qa_parser.set_defaults(func=_run_qa)
@@ -120,6 +137,45 @@ def build_parser() -> argparse.ArgumentParser:
         help="Output directory for latest_report.json/md",
     )
     eval_run_parser.set_defaults(func=_run_eval_run)
+
+    eval_rag_parser = eval_subparsers.add_parser(
+        "rag",
+        help="Run frozen held-out RAG benchmark across retrieval strategies.",
+    )
+    eval_rag_parser.add_argument(
+        "--corpus",
+        default="data/eval/milestone1_corpus.jsonl",
+        help="Slide corpus JSONL.",
+    )
+    eval_rag_parser.add_argument(
+        "--dataset",
+        default="data/eval/milestone1_qa.jsonl",
+        help="Held-out QA JSONL.",
+    )
+    eval_rag_parser.add_argument(
+        "--retriever",
+        action="append",
+        dest="retrievers",
+        choices=["hash", "dense"],
+        help="Retriever to benchmark. Repeat for multiple. Default: hash + dense.",
+    )
+    eval_rag_parser.add_argument(
+        "--generator",
+        default="hf:google/flan-t5-small",
+        help="Generator backend for answer accuracy.",
+    )
+    eval_rag_parser.add_argument(
+        "--embedding-model",
+        default=None,
+        help="SentenceTransformer model for dense retrieval.",
+    )
+    eval_rag_parser.add_argument(
+        "-o",
+        "--output",
+        default="reports/eval/milestone1_rag.json",
+        help="Benchmark report JSON output.",
+    )
+    eval_rag_parser.set_defaults(func=_run_eval_rag)
 
     eval_compare_parser = eval_subparsers.add_parser(
         "compare",
@@ -249,6 +305,8 @@ def _run_index(args: argparse.Namespace) -> int:
         chunk_size_tokens=args.chunk_size_tokens,
         chunk_overlap_tokens=args.chunk_overlap_tokens,
         embedding_dim=args.embedding_dim,
+        retriever=args.retriever,
+        embedding_model=args.embedding_model,
     )
     print(json.dumps({"status": "ok", **metadata}, ensure_ascii=True))
     return 0
@@ -260,6 +318,7 @@ def _run_qa(args: argparse.Namespace) -> int:
         question=args.question,
         top_k=args.top_k,
         debug=args.debug,
+        generator=args.generator,
     )
     out_path = write_answer(payload, args.output)
     print(
@@ -289,6 +348,34 @@ def _run_eval_run(args: argparse.Namespace) -> int:
                 "overall_score": report["summary"]["overall_score"],
                 "latest_report_json": report["artifacts"]["latest_report_json"],
                 "latest_report_md": report["artifacts"]["latest_report_md"],
+            },
+            ensure_ascii=True,
+        )
+    )
+    return 0
+
+
+def _run_eval_rag(args: argparse.Namespace) -> int:
+    report = run_rag_benchmark(
+        corpus_path=args.corpus,
+        dataset_path=args.dataset,
+        out_path=args.output,
+        retrievers=args.retrievers,
+        generator=args.generator,
+        embedding_model=args.embedding_model,
+    )
+    print(
+        json.dumps(
+            {
+                "status": "ok",
+                "output_path": str(Path(args.output).resolve()),
+                "systems": [
+                    {
+                        "retriever": system["retriever"],
+                        **system["metrics"],
+                    }
+                    for system in report["systems"]
+                ],
             },
             ensure_ascii=True,
         )
