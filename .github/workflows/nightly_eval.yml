@@ -3,7 +3,7 @@ name: Tests And Nightly Eval
 on:
   pull_request:
   push:
-    branches: [main]
+    branches: [main, milestone-1-real-rag-eval]
   schedule:
     - cron: "0 8 * * *"
   workflow_dispatch:
@@ -70,7 +70,7 @@ jobs:
 
 
   real-rag:
-    if: github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch'
+    if: github.event_name == 'pull_request' || github.event_name == 'push' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
